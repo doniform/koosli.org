@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <a href="/">
+        <img class="img-responsive logo" src="{{ url_for('static', filename='img/banner.png') }}">
+    </a>
+
+    <form method="get" action="{{ url_for('.do_search') }}">
+        <input type="text" name="q" value="{{ query }}">
+        <input type="submit" value="Søk" class="btn btn-primary">
+    </form>
+
+
+    {% for result in results %}
+        <div class="result">
+            <h2><a href="{{ result.Url }}">{{ result.Title }}</a></h2>
+            <a href="{{ result.Url }}">{{ result.DisplayUrl }}</a>
+            <p>
+                {{ result.Description }}
+            </p>
+        </div>
+    {% endfor %}
+
+            {# "results": [
+            {
+                "Description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
+                "DisplayUrl": "en.wikipedia.org/wiki/Bunny",
+                "ID": "a35cc7de-72f0-45e9-8139-bdc13ee82d74",
+                "Title": "Rabbit - Wikipedia, the free encyclopedia",
+                "Url": "http://en.wikipedia.org/wiki/Bunny",
+                "__metadata": {
+                    "type": "WebResult",
+                    "uri": "https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='bunny'&$skip=0&$top=1"
+                }
+            } #}
+{% endblock %}
