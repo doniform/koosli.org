@@ -17,3 +17,5 @@ Install virtualenv, then:
 To run the tests:
 
     $ nosetests
+
+Keep [test coverage](http://koosli.github.io/koosli.org/) up.
