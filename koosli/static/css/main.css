@@ -1,7 +1,20 @@
-body {
+.banner {
+    margin-top: 20%;
 }
 
-.banner {
+.banner img {
     margin-top: 10%;
     margin: 50px auto;
+}
+
+.row {
+    margin: 20px 0;
+}
+
+img {
+    max-size: 100%;
+}
+
+.search-box input[type="text"] {
+    width: 70%;
 }

@@ -2,25 +2,43 @@
 
 {% block content %}
 
-    <a href="/">
-        <img class="img-responsive logo" src="{{ url_for('static', filename='img/banner.png') }}">
-    </a>
-
-    <form method="get" action="{{ url_for('.do_search') }}">
-        <input type="text" name="q" value="{{ query }}">
-        <input type="submit" value="Søk" class="btn btn-primary">
-    </form>
-
-
-    {% for result in results %}
-        <div class="result">
-            <h2><a href="{{ result.Url }}">{{ result.Title }}</a></h2>
-            <a href="{{ result.Url }}">{{ result.DisplayUrl }}</a>
-            <p>
-                {{ result.Description }}
-            </p>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="/">
+                <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
+            </a>
         </div>
-    {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="search-box col-sm-offset-2 col-sm-6">
+            <form method="get" action="{{ url_for('.do_search') }}">
+                <input type="text" name="q" value="{{ query }}">
+                <input type="submit" value="Søk" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#">Web</a></li>
+                <li><a href="#">Images</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-10">
+            {% for result in results %}
+                <div>
+                    <h2><a href="{{ result.Url }}">{{ result.Title }}</a></h2>
+                    <a href="{{ result.Url }}">{{ result.DisplayUrl }}</a>
+                    <p>
+                        {{ result.Description }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
             {# "results": [
             {

@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <img class="img-responsive banner" src="{{ url_for('static', filename='img/banner.png') }}">
-    <form method="get" action="{{ url_for('.do_search') }}" class="form-horizontal">
-        <div class="form-group">
-            <input type="text" name="q" class="col-sm-10 col-xs-12">
-            <span class="col-sm-2 col-xs-3">
-                <input type="submit" class="btn btn-primary" value="Søk">
-            </span>
-        </div>
-    </form>
+
+    <div class="banner">
+        <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
+    </div>
+
+    <div class="row">
+        <form method="get" action="{{ url_for('.do_search') }}" class="search-box col-sm-8 col-sm-offset-3">
+            <input type="text" name="q">
+            <input type="submit" class="btn btn-primary" value="Søk">
+        </form>
+    </div>
+
 {% endblock %}
