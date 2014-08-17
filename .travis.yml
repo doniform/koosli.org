@@ -20,4 +20,4 @@ env:
   global:
 
     # GITHUB_TOKEN that grants access to thusoy's account. Used for deploying code coverage to gh-pages branch.
-    - secure: "cLKqj6oYucS0mt0FT4+lxrTZZrvRf/Ob81RaUqv4NfbMXrtZgTpGoyJBjo/NBOW5Bu4kLjargZvWsoANzIiDBq/usKzuV4GyPouZmksr8aPzUN/VYclOgGxMog99GZ3xe1eS+UWFexeIVD+NB66JRfvOJ+LvgE1iw1537PZLuFI="
+    - secure: "NbnTyOC6d9J3zm6E6ZjI9P3lSCXyfHtlv7r/h8r6K2gyKwOVItixaWhZG1cs9xqKOYJqMibfn8snpWFG1Lg/y0ujYrqoaQZjyQ1ybmVSK1/915/D9pWyJJQZ5NMvENPe1N6w59V/A4SxAYHgYRqM0GbioX87xNYfP2c1D9Vdpd8="
