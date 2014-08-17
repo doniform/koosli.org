@@ -9,10 +9,7 @@ def search_main():
 
 
 def get_search_provider():
-    path = current_app.config['SEARCH_PROVIDERS']['bing']
-    module = importlib.import_module(path[:path.rindex('.')])
-    #import pdb; pdb.set_trace()
-    klass = getattr(module, path[path.rindex('.')+1:])
+    klass = current_app.config['SEARCH_PROVIDERS']['bing']
     return klass()
 
 
