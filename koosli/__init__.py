@@ -1,10 +1,9 @@
 from flask import Flask
 
-def create_app(config_file=None):
+def create_app(config_file):
     app = Flask('koosli')
-    if config_file:
-        print 'Loading config from %s' % config_file
-        app.config.from_pyfile(config_file)
+    print 'Loading config from %s' % config_file
+    app.config.from_pyfile(config_file)
 
     from .views import search
 
