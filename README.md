@@ -1,4 +1,4 @@
-koosli.org
+koosli.org [![Build Status](https://travis-ci.org/Koosli/koosli.org.svg)](https://travis-ci.org/Koosli/koosli.org)
 ==========
 
 Autonomous search platform with good intentions.
