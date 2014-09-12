@@ -76,5 +76,6 @@ def configure_extensions(app):
 
     @login_manager.user_loader
     def load_user(id):
+        from user.models import User
         return User.query.get(id)
     login_manager.setup_app(app)
