@@ -27,20 +27,20 @@ class TestCase(Base):
     def init_data(self):
         """Initialize the databse with dummy users"""
 
-        demo = User(
+        self.demo = User(
                 email=u'demo@example.com',
                 password=u'123456',
                 role_code=USER,
                 status_code=ACTIVE,
                 user_stats=UserStats())
-        admin = User(
+        self.admin = User(
                 email=u'admin@example.com',
                 password=u'123456',
                 role_code=ADMIN,
                 status_code=ACTIVE,
                 user_stats=UserStats())
-        db.session.add(demo)
-        db.session.add(admin)
+        db.session.add(self.demo)
+        db.session.add(self.admin)
         db.session.commit()
 
     def setUp(self):
@@ -57,20 +57,24 @@ class TestCase(Base):
 
     def login(self, username, password):
         data = {
-            'login': username,
+            'email': username,
             'password': password,
         }
-        response = self.client.post('/login', data=data, follow_redirects=True)
-        assert "Hello" in response.data
+        response = self.client.post('/user/login', data=data, follow_redirects=True)
+        print response.data
         return response
 
     def _logout(self):
-        response = self.client.get('/logout')
+        response = self.client.get('/user/logout')
         self.assertRedirects(response, location='/')
 
-    def _test_get_request(self, endpoint, template=None):
+    def _test_get_request(self, endpoint, template=None, redirect=False):
         response = self.client.get(endpoint)
-        self.assert_200(response)
+        print response.data
+        if redirect:
+            self.assert_301(response)
+        else:
+            self.assert_200(response)
         if template:
             self.assertTemplateUsed(name=template)
         return response
