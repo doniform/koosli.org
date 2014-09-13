@@ -29,4 +29,4 @@ SEARCH_PROVIDERS = {
 SQLALCHEMY_ECHO = True
 
 # SQLITE for prototyping.
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/db.sqlite'
+SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/koosli_test.sqlite'

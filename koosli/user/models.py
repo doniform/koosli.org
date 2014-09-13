@@ -70,8 +70,6 @@ class User(db.Model, UserMixin):
                                               _set_password))
 
     def check_password(self, password):
-        if self.password is None:
-            return False
         return check_password_hash(self.password, password)
 
     # ================================================================
@@ -86,11 +84,14 @@ class User(db.Model, UserMixin):
 
     # ================================================================
     # One-to-many relationship between users and user_statuses.
-    status_code = Column(db.SmallInteger, default=INACTIVE)
+    status_code = Column(db.SmallInteger, default=ACTIVE)
 
     @property
     def status(self):
         return USER_STATUS[self.status_code]
+
+    def is_authenticated(self):
+        return self.status_code == ACTIVE
 
     # ================================================================
     # One-to-one (uselist=False) relationship between users and user_stats.
@@ -112,19 +113,9 @@ class User(db.Model, UserMixin):
         return user, authenticated
 
     @classmethod
-    def search(cls, keywords):
-        criteria = []
-        for keyword in keywords.split():
-            keyword = '%' + keyword + '%'
-            criteria.append(
-                User.email.ilike(keyword),
-            )
-        q = reduce(db.and_, criteria)
-        return cls.query.filter(q)
-
-    @classmethod
     def get_by_id(cls, user_id):
         return cls.query.filter_by(id=user_id).first_or_404()
 
-    def check_email(self, email):
-        return User.query.filter(User.email == email).count() == 0
+    @classmethod
+    def email_taken(cls, email):
+        return cls.query.filter(User.email == email).count() != 0

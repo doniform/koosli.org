@@ -7,6 +7,7 @@ from flask import current_app as APP
 from flask.ext.login import login_required, current_user, login_user, logout_user
 
 from .models import User
+from .forms import RegistrationForm
 from koosli import db
 
 
@@ -14,11 +15,10 @@ user = Blueprint('user', __name__, url_prefix='/user')
 
 
 @user.route('/')
+@login_required
 def index():
     """The user dashboard where stats can be seen and preferences changed"""
-    print "user index called"
-    if not current_user.is_authenticated():
-        abort(403)
+
     return render_template('user_dash.html', user=current_user)
 
 
@@ -40,20 +40,25 @@ def login():
         return redirect('/user/login')
 
     login_user(registered_user)
-    flash('Logged in successfully')
     return redirect(request.args.get('next') or '/user')
 
 
 @user.route('/register' , methods=['GET','POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('user_register.html')
+    form = RegistrationForm(request.form)
 
-    user = User(email=request.form['email'] , password=request.form['password'])
+    if request.method == 'GET' or not form.validate():
+        return render_template('user_register.html', form=form)
+
+    if User.email_taken(form.email.data):
+        flash('This email belongs to a registered user')
+        return render_template('user_register.html', form=form)
+
+    user = User(email=form.email.data, password=form.password.data)
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')
-    return redirect('/user/login')
+    return redirect(url_for('user.login'))
 
 
 @user.route('/logout')
