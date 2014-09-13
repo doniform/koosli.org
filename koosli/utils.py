@@ -59,16 +59,3 @@ def pretty_date(dt, default=None):
             return u'%d %s ago' % (period, plural)
 
     return default
-
-
-def id_generator(size=10, chars=string.ascii_letters + string.digits):
-    #return base64.urlsafe_b64encode(os.urandom(size))
-    return ''.join(random.choice(chars) for x in range(size))
-
-
-def make_dir(dir_path):
-    try:
-        if not os.path.exists(dir_path):
-            os.mkdir(dir_path)
-    except Exception, e:
-        raise e

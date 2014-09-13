@@ -61,18 +61,18 @@ class TestCase(Base):
             'password': password,
         }
         response = self.client.post('/user/login', data=data, follow_redirects=True)
-        print response.data
         return response
 
     def _logout(self):
         response = self.client.get('/user/logout')
         self.assertRedirects(response, location='/')
 
-    def _test_get_request(self, endpoint, template=None, redirect=False):
+    def _test_get_request(self, endpoint, template=None, redirect=None):
+        """Test a URL with a get request to ensure correct response code"""
+        
         response = self.client.get(endpoint)
-        print response.data
-        if redirect:
-            self.assert_301(response)
+        if redirect is not None:
+            self.assertRedirects(response, location=redirect)
         else:
             self.assert_200(response)
         if template:

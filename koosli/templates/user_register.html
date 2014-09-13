@@ -3,6 +3,16 @@
 {% block content %}
 <form action="/user/register" method="POST" class="form-horizontal">
     <h2>Sign up for Koosli </h2>
+
+    {% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endif %}
     
     <div class="control-group">
         <div class="controls">
