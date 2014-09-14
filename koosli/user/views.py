@@ -11,18 +11,18 @@ from .forms import RegistrationForm
 from koosli import db
 
 
-user = Blueprint('user', __name__, url_prefix='/user')
+mod = Blueprint('user', __name__, url_prefix='/user')
 
 
-@user.route('/')
+@mod.route('/')
 @login_required
 def index():
-    """The user dashboard where stats can be seen and preferences changed"""
+    '''The user dashboard where stats can be seen and preferences changed'''
 
     return render_template('user_dash.html', user=current_user)
 
 
-@user.route("/login", methods=["GET", "POST"])
+@mod.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'GET':
         return render_template('user_login.html')
@@ -43,7 +43,7 @@ def login():
     return redirect(request.args.get('next') or '/user')
 
 
-@user.route('/register' , methods=['GET','POST'])
+@mod.route('/register' , methods=['GET','POST'])
 def register():
     form = RegistrationForm(request.form)
 
@@ -61,7 +61,7 @@ def register():
     return redirect(url_for('user.login'))
 
 
-@user.route('/logout')
+@mod.route('/logout')
 def logout():
     logout_user()
-    return redirect('/') 
+    return redirect('/')

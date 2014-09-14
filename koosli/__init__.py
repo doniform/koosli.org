@@ -17,7 +17,7 @@ def create_app(config_file=None):
 
 
 def configure_application(app, config_file=None):
-    """Configure the flask application"""
+    '''Configure the flask application'''
 
     if config_file is not None:
         print 'Loading config from %s' % config_file
@@ -27,7 +27,7 @@ def configure_application(app, config_file=None):
 
 
 def configure_error_handlers(app):
-    """Define templates for HMTML error pages"""
+    '''Define templates for HMTML error pages'''
 
     @app.errorhandler(403)
     def forbidden_page(error):
@@ -43,19 +43,21 @@ def configure_error_handlers(app):
 
 
 def configure_blueprints(app):
-    """Register all application blueprints"""
+    '''Register all application blueprints'''
 
     from .views import search
     from .views import settings
     from .user import user
+    from .admin import admin
 
     app.register_blueprint(user)
+    app.register_blueprint(admin)
     app.register_blueprint(search.mod)
     app.register_blueprint(settings.mod)
 
 
 def configure_extensions(app):
-    """Configure flask extensions"""
+    '''Configure flask extensions'''
 
     #=========================================
     # Database management

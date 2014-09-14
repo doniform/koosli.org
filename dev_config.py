@@ -2,24 +2,14 @@ import os
 
 from koosli.search_providers import bing
 
+from config import *
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = True
 
-SECRET_KEY = 'sdfkljh2q3khwdkefvhoq8w23r0sdc09'
+SECRET_KEY = 'not a secret'
 
 
-#=========================================
-# Search Providers
-#=========================================
-
-#BING_API_KEY = '' # Fill in to use live bing search
-
-SEARCH_PROVIDERS = {
-    'bing': bing.BingMock,
-    #'bing': bing.Bing,
-}
 
 #=========================================
 # Database Config
@@ -29,7 +19,7 @@ SEARCH_PROVIDERS = {
 SQLALCHEMY_ECHO = True
 
 # SQLITE for prototyping.
-SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/kooslidb.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/kooslidb.db'
 
 # MYSQL for production.
 #SQLALCHEMY_DATABASE_URI = 'mysql://username:password@server/db?charset=utf8'

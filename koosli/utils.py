@@ -26,11 +26,10 @@ def get_current_time():
 
 
 def pretty_date(dt, default=None):
-    """
-    Returns string representing "time since" e.g.
+    '''Returns string representing "time since" e.g.
     3 days ago, 5 hours ago etc.
     Ref: https://bitbucket.org/danjac/newsmeme/src/a281babb9ca3/newsmeme/
-    """
+    '''
 
     if default is None:
         default = 'just now'

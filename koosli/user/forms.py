@@ -1,8 +1,10 @@
 
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
+from wtforms.fields.html5 import EmailField
 
 class RegistrationForm(Form):
-    email = TextField('Email Address', [validators.Length(min=6, max=35)])
+
+    email = EmailField('Email Address', [validators.Length(min=6, max=35), validators.email()])
     password = PasswordField('Password', [
         validators.Required(),
         validators.EqualTo('confirm', message='Passwords must match')
