@@ -13,7 +13,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    
+
     <div class="control-group">
         <div class="controls">
           <input type="email" id="email" name="email" class="input-xlarge"
@@ -21,7 +21,7 @@
             required>
         </div>
     </div>
- 
+
     <div class="control-group">
         <div class="controls">
           <input type="password" id="password" name="password" class="input-xlarge"
@@ -29,7 +29,23 @@
             required>
         </div>
     </div>
- 
+
+    <div class="control-group">
+        <div class="controls">
+          <input type="password" id="confirm" name="confirm" class="input-xlarge"
+            placeholder="Enter Password" value="{{ request.form.confirm }}"
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <label for="accept_tos">I accept the TOS</label>
+          <input type="radio" id="accept_tos" name="accept_tos" class="input-xlarge"
+            required>
+        </div>
+    </div>
+
     <div class="control-group">
         <div class="controls">
           <button type="submit" class="btn btn-success">Register</button>

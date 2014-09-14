@@ -1,6 +1,6 @@
 from werkzeug.urls import url_quote
 
-from flask import url_for
+from flask import url_for, current_app
 from flask.ext.login import login_user, current_user
 
 from koosli import db
@@ -27,11 +27,14 @@ class UserTest(TestCase):
         self.assertIsNotNone(new_user)
         self.assertTrue(new_user.is_authenticated())
 
+        response = self.client.post('/user/register', data=data, follow_redirects=True)
+        self.assertTrue('belongs to a registered user' in response.data)
+
         # Invalid data
         data_invalid = {
             'email': 'invalid_user.example.com',
             'password': '123456',
-            'password': '123456',
+            'confirm': '123456',
             'accept_tos': True,
         }
 
@@ -40,25 +43,32 @@ class UserTest(TestCase):
         invalid_user = User.query.filter_by(email=data_invalid['email']).first()
         self.assertIsNone(invalid_user)
 
-        response = self.client.post('/user/register', data=data, follow_redirects=True)
-        self.assertTrue('belongs to a registered user' in response.data)
 
 
     def test_login(self):
         self._test_get_request('/user/login', 'user_login.html')
-        res = self.login(self.demo.email, '123456')
-        self.assert_200(res)
-        self._logout()
+        data = {
+            'email': 'demo@example.com',
+            'password': '123456',
+        }
+        response = self.client.post('/user/login', data=data, follow_redirects=True)
 
-        res = self.login('invalid_user', '123456')
-        self.assertTrue('This email does not belong to a registered user' in res.data)
+        invalid_data = {
+            'email': 'not_a_user',
+            'password': '123456',
+        }
+        response = self.client.post('/user/login', data=invalid_data, follow_redirects=True)
+        self.assert_200(response)
+        self.assertTrue('This email does not belong to a registered user' in response.data)
 
 
 
     def test_logout(self):
-        self.login(self.demo.email, self.demo.password)
-        self._logout()
+        self.login(self.demo.email)
+        response = self.client.get('/user/logout', follow_redirects=True)
+        self.assert_200(response)
 
+    # [TODO] NOT IMPLEMENTED YET
     # def test_reset_password(self):
     #     response = self.client.get('/user/reset_password')
     #     self.assert_200(response)
@@ -72,10 +82,11 @@ class UserTest(TestCase):
     #     assert user.activation_key is None
 
     def test_index(self):
-        self.login(self.demo.email, '123456')
+        self.login(self.demo.email)
+        current_app.login_manager.reload_user()
         response = self._test_get_request(url_for('user.index'), 'user_dash.html')
-        self._logout()
-        self._test_get_request(url_for('user.index'), 'user_dash.html', redirect='/user/login?next=%2Fuser%2F')
+        self.logout()
+        self._test_get_request(url_for('user.index'), redirect='/user/login?next=%2Fuser%2F')
 
 
     def test_role(self):

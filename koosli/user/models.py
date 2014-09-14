@@ -31,8 +31,7 @@ USER_STATUS = {
 
 
 class UserStats(db.Model):
-
-    __tablename__ = 'user_stats'
+    '''Keeps track of search statistics and preferences'''
 
     id = Column(db.Integer, primary_key=True)
     created_time = Column(db.DateTime, default=get_current_time)
@@ -40,21 +39,27 @@ class UserStats(db.Model):
     search_provider = Column(db.String(STRING_LEN))
     beneficiary = Column(db.String(STRING_LEN))
 
-    
+
 
 
 class User(db.Model, UserMixin):
 
-    __tablename__ = 'users'
-
     id = Column(db.Integer, primary_key=True)
     email = Column(db.String(STRING_LEN), nullable=False, unique=True)
-    activation_key = Column(db.String(STRING_LEN))
     created_time = Column(db.DateTime, default=get_current_time)
 
+    # To be used if we need email validation
+    activation_key = Column(db.String(STRING_LEN))
 
-    def __repr__(self):
-        return '<User %r>' % self.email
+    # Status of the user. If not authenticated, set to NEW
+    status_code = Column(db.SmallInteger, default=ACTIVE)
+
+    # Contains preferences and aggregated statistics
+    user_stats_id = Column(db.Integer, db.ForeignKey("user_stats.id"))
+    user_stats = db.relationship("UserStats", uselist=False, backref="user")
+
+    # Admin or User, access string representation through role property
+    role_code = Column(db.SmallInteger, default=USER, nullable=False)
 
     _password = Column('password', db.String(STRING_LEN), nullable=False)
 
@@ -63,17 +68,21 @@ class User(db.Model, UserMixin):
 
     def _set_password(self, password):
         self._password = generate_password_hash(password)
-    
-    # Hide password encryption by exposing password field only.
+
+    # Hide password hashing by exposing password field only.
     password = db.synonym('_password',
-                          descriptor=property(_get_password,
-                                              _set_password))
+        descriptor=property(_get_password, _set_password))
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    # ================================================================
-    role_code = Column(db.SmallInteger, default=USER, nullable=False)
+    def __repr__(self):
+        return '<User %r>' % self.email
+
+    #=========================================
+    # Property functions
+    #=========================================
+
 
     @property
     def role(self):
@@ -82,10 +91,6 @@ class User(db.Model, UserMixin):
     def is_admin(self):
         return self.role_code == ADMIN
 
-    # ================================================================
-    # One-to-many relationship between users and user_statuses.
-    status_code = Column(db.SmallInteger, default=ACTIVE)
-
     @property
     def status(self):
         return USER_STATUS[self.status_code]
@@ -93,13 +98,9 @@ class User(db.Model, UserMixin):
     def is_authenticated(self):
         return self.status_code == ACTIVE
 
-    # ================================================================
-    # One-to-one (uselist=False) relationship between users and user_stats.
-    user_stats_id = Column(db.Integer, db.ForeignKey("user_stats.id"))
-    user_stats = db.relationship("UserStats", uselist=False, backref="user")
-
-    # ================================================================
+    #=========================================
     # Class methods
+    #=========================================
 
     @classmethod
     def authenticate(cls, login, password):
