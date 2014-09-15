@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import arrow
 from sqlalchemy import Column, types
 from sqlalchemy.ext.mutable import Mutable
 from werkzeug import generate_password_hash, check_password_hash
