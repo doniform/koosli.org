@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/user/register" method="POST" class="form-horizontal">
+    <h2>Sign up for Koosli </h2>
+
+    {% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="control-group">
+        <div class="controls">
+          <input type="email" id="email" name="email" class="input-xlarge"
+            placeholder="Enter Email" value="{{ request.form.username }}"
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <input type="password" id="password" name="password" class="input-xlarge"
+            placeholder="Enter Password" value="{{ request.form.password }}"
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <input type="password" id="confirm" name="confirm" class="input-xlarge"
+            placeholder="Enter Password" value="{{ request.form.confirm }}"
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <label for="accept_tos">I accept the TOS</label>
+          <input type="radio" id="accept_tos" name="accept_tos" class="input-xlarge"
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-success">Register</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,8 +1,25 @@
+import os
+
 from koosli.search_providers import bing
 
-#BING_API_KEY = '' # Fill in to use live bing search
+from config import *
 
-SEARCH_PROVIDERS = {
-    'bing': bing.BingMock,
-    #'bing': bing.Bing,
-}
+
+DEBUG = True
+
+SECRET_KEY = 'not a secret'
+
+
+
+#=========================================
+# Database Config
+#=========================================
+
+# Flask-Sqlalchemy: http://packages.python.org/Flask-SQLAlchemy/config.html
+SQLALCHEMY_ECHO = True
+
+# SQLITE for prototyping.
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/kooslidb.db'
+
+# MYSQL for production.
+#SQLALCHEMY_DATABASE_URI = 'mysql://username:password@server/db?charset=utf8'

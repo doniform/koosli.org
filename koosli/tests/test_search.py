@@ -1,21 +1,9 @@
-import os
-import unittest
+from koosli.tests import TestCase
 
-from koosli import create_app
-
-class SearchTest(unittest.TestCase):
-
-    def setUp(self):
-        test_config = os.path.abspath(os.path.join(os.path.dirname(__file__), 'test_config.py'))
-        self.app = create_app(config_file=test_config)
-        self.client = self.app.test_client()
-
+class SearchTest(TestCase):
 
     def test_main_page(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-
+        self._test_get_request('/', 'index.html')
 
     def test_search(self):
-        response = self.client.get('/search?q=foobar')
-        self.assertEqual(response.status_code, 200)
+        self._test_get_request('/search?q=foobar', 'search_results.html')

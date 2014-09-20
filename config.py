@@ -3,9 +3,9 @@ import os
 from koosli.search_providers import bing
 
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = False
 
 SECRET_KEY = 'not a secret'
 
@@ -26,7 +26,7 @@ SEARCH_PROVIDERS = {
 #=========================================
 
 # Flask-Sqlalchemy: http://packages.python.org/Flask-SQLAlchemy/config.html
-SQLALCHEMY_ECHO = True
+SQLALCHEMY_ECHO = False
 
-# SQLITE for prototyping.
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/koosli_test.sqlite'
+# Postgres for production.
+SQLALCHEMY_DATABASE_URI = 'psql://username:password@server/db?charset=utf8'
