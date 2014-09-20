@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript"
+        src="http://ajax.microsoft.com/ajax/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}' type='text/javascript'%3E%3C/script%3E"));
+    }
+    </script>
 </head>
 <body>
     <div id="wrapper" class="container">
