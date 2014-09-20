@@ -27,7 +27,7 @@ html, body {
     text-align:center;
 }
 .banner {
-    margin-top: 20%;
+    margin-top: 10%;
     margin-bottom: 10%;
 }
 .banner img {
@@ -51,4 +51,25 @@ img {
 }
 .input-group-addon {
     background: transparent;
+}
+.choice-row {
+    text-align: center;
+}
+.cause-option, .search-option, .ad-option {
+    height: 130px;
+    padding-top: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+.search-option, .ad-option {
+    padding-top:40px;
+}
+.cause-option.active, .search-option.active, .ad-option.active {
+    background-color: slategray;
+}
+.cause-option:hover, .search-option:hover, .ad-option:hover {
+    cursor:pointer;
+    background-color: lightgray;
+    transition: 0.2s;
 }
