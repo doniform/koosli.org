@@ -1,20 +1,54 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+#header {
+    padding:10px;
+    position: relative;
+}
+#content {
+    padding:10px;
+    padding-bottom:120px; /* Height of the footer element */
+    position: relative;
+}
+#footer {
+    width:100%;
+    height:120px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    text-align:center;
+}
 .banner {
     margin-top: 20%;
+    margin-bottom: 10%;
 }
-
 .banner img {
     margin-top: 10%;
     margin: 50px auto;
 }
-
 .row {
     margin: 20px 0;
 }
-
 img {
     max-size: 100%;
 }
-
 .search-box input[type="text"] {
     width: 70%;
+}
+.max-width {
+    width: 100%;
+}
+.text-center {
+    text-align: center;
+}
+.input-group-addon {
+    background: transparent;
 }
