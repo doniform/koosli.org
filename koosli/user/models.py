@@ -41,6 +41,7 @@ class UserStats(db.Model):
     search_provider = Column(db.String(STRING_LEN), default="")
     beneficiary = Column(db.String(STRING_LEN), default="")
     ad_network = Column(db.String(STRING_LEN), default="")
+    advertising_off = Column(db.Boolean, default=False)
 
     # Statistics
     queries_made = Column(db.Integer, default=0)

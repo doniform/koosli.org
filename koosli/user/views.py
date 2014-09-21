@@ -81,7 +81,8 @@ def preference():
     stats = UserStats.query.filter_by(id=current_user.user_stats_id).update({
         'beneficiary': form.beneficiary.data,
         'search_provider': form.search.data,
-        'ad_network': form.ads.data
+        'ad_network': form.ads.data,
+        'advertising_off': form.advertising_off.data
     })
     db.session.commit()
 

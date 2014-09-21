@@ -124,7 +124,7 @@
 <div class="row">
     <div class="checkbox">
         <label>
-            <input type="checkbox"> Turn advertising off - or - <a href="/why-ads">why advertising?</a>
+            <input id="ads-off" type="checkbox"> Turn advertising off - or - <a href="/why-ads">why advertising?</a>
         </label>
     </div>
 </div>
@@ -134,12 +134,14 @@
     $("[cause='{{ stats.beneficiary }}']").addClass("active");
     $("[search='{{ stats.search_provider }}']").addClass("active");
     $("[ads='{{ stats.ad_network }}']").addClass("active");
+    $("#ads-off").prop("checked", "{{ stats.advertising_off }}" === "True" ? true : false);
 
     function get_preferences () {
         return {
             beneficiary: $(".cause-option.active").attr("cause"),
             search: $(".search-option.active").attr("search"),
             ads: $(".ad-option.active").attr("ads"),
+            advertising_off: $("#ads-off").prop("checked")
         }
     }
 
@@ -162,6 +164,10 @@
     $(".ad-option").click(function () {
         $(".ad-option").removeClass("active");
         $(this).addClass("active");
+        send_preferences();
+    });
+
+    $("#ads-off").click(function () {
         send_preferences();
     });
 
