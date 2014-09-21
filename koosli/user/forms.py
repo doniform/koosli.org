@@ -21,4 +21,4 @@ class PreferenceForm(Form):
     beneficiary = TextField('beneficiary') # TODO Add valid beneficiary validators
     search = TextField('search')
     ads = TextField('ads')
-    advertising_off = BooleanField()
+    advertising_off = BooleanField('advertising_off', [validators.Required()])
