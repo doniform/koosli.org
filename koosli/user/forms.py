@@ -5,6 +5,7 @@ from wtforms.fields.html5 import EmailField
 from koosli.utils import PASSWORD_LEN_MIN, PASSWORD_LEN_MAX
 
 class RegistrationForm(Form):
+    '''Form for user registration'''
 
     email = EmailField('Email Address', [validators.Length(min=6, max=35), validators.email()])
     password = PasswordField('Password', [
@@ -17,8 +18,9 @@ class RegistrationForm(Form):
 
 
 class PreferenceForm(Form):
+    '''Form for user preferences'''
 
     beneficiary = TextField('beneficiary') # TODO Add valid beneficiary validators
     search = TextField('search')
     ads = TextField('ads')
-    advertising_off = BooleanField('advertising_off', [validators.Required()])
+    advertising_off = BooleanField('advertising_off', [])

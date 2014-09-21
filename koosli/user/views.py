@@ -60,8 +60,9 @@ def register():
     db.session.add(user)
     db.session.add(stats)
     db.session.commit()
+    login_user(user)
     flash('User successfully registered')
-    return redirect(url_for('user.login'))
+    return redirect(url_for('user.index'))
 
 
 @mod.route('/logout')
