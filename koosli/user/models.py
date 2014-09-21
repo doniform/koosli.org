@@ -37,8 +37,15 @@ class UserStats(db.Model):
     id = Column(db.Integer, primary_key=True)
     created_time = Column(db.DateTime, default=get_current_time)
 
-    search_provider = Column(db.String(STRING_LEN))
-    beneficiary = Column(db.String(STRING_LEN))
+    # Preferences
+    search_provider = Column(db.String(STRING_LEN), default="")
+    beneficiary = Column(db.String(STRING_LEN), default="")
+    ad_network = Column(db.String(STRING_LEN), default="")
+
+    # Statistics
+    queries_made = Column(db.Integer, default=0)
+    ads_clicked = Column(db.Integer, default=0)
+    money_generated = Column(db.Float, default=0.0)
 
 
 

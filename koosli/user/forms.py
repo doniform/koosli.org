@@ -14,3 +14,10 @@ class RegistrationForm(Form):
     ])
     confirm = PasswordField('Repeat Password')
     accept_tos = BooleanField('I accept the TOS', [validators.Required()])
+
+
+class PreferenceForm(Form):
+
+    beneficiary = TextField('beneficiary') # TODO Add valid beneficiary validators
+    search = TextField('search')
+    ads = TextField('ads')

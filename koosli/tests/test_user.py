@@ -4,7 +4,7 @@ from flask import url_for, current_app
 from flask.ext.login import login_user, current_user
 
 from koosli import db
-from koosli.user import User, ADMIN, USER, ACTIVE, USER_ROLE, USER_STATUS
+from koosli.user import User, UserStats, ADMIN, USER, ACTIVE, USER_ROLE, USER_STATUS
 from koosli.tests import TestCase
 
 
@@ -26,6 +26,9 @@ class UserTest(TestCase):
         new_user = User.query.filter_by(email=data['email']).first()
         self.assertIsNotNone(new_user)
         self.assertTrue(new_user.is_authenticated())
+
+        new_stats = UserStats.query.filter_by(id=new_user.user_stats_id).first()
+        self.assertIsNotNone(new_stats)
 
         response = self.client.post('/user/register', data=data, follow_redirects=True)
         self.assertTrue('belongs to a registered user' in response.data)
@@ -114,3 +117,17 @@ class UserTest(TestCase):
     def test_email_taken(self):
         self.assertTrue(User.email_taken('demo@example.com'))
         self.assertFalse(User.email_taken('demo@example.no'))
+
+    def test_new_preferences(self):
+        self.login(self.demo.email)
+        data = {
+            'beneficiary': 'wikipedia',
+            'search': 'yahoo',
+            'ads': 'yahoo'
+        }
+        response = self.client.post('/user/preference', data=data)
+        self.assert_200(response)
+        stats = UserStats.query.filter_by(id=self.demo.user_stats_id).first()
+        self.assertIsNotNone(stats)
+        self.assertEqual(stats.beneficiary, data['beneficiary'])
+

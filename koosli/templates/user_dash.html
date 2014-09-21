@@ -19,7 +19,7 @@
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-3">
-                <div class="cause-option active">
+                <div class="cause-option" cause="wikipedia">
                     <div>
                         <img width="50" height="50" src="{{ url_for('static', filename='img/wikipedia.png') }}" />
                     </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="cause-option">
+                <div class="cause-option" cause="mozilla">
                     <div>
                         <img width="50" height="50" src="{{ url_for('static', filename='img/firefox.png') }}" />
                     </div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="cause-option">
+                <div class="cause-option" cause="eff">
                     <div>
                         <img width="50" height="50" src="{{ url_for('static', filename='img/eff.png') }}" />
                     </div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="cause-option">
+                <div class="cause-option" cause="doctors">
                     <div>
                         <img width="100" height="50" src="{{ url_for('static', filename='img/doctors.png') }}" />
                     </div>
@@ -88,14 +88,14 @@
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-3">
-                <div class="search-option">
+                <div class="search-option" search="bing">
                     <div>
                         <img width="100" height="50" src="{{ url_for('static', filename='img/bing.png') }}" />
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="search-option active">
+                <div class="search-option" search="yahoo">
                     <div>
                         <img width="100" height="50" src="{{ url_for('static', filename='img/yahoo.png') }}" />
                     </div>
@@ -111,7 +111,7 @@
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-3">
-                <div class="ad-option">
+                <div class="ad-option" ads="yahooboss">
                     <div>
                         <img width="100" height="50" src="{{ url_for('static', filename='img/yahooboss.png') }}" />
                     </div>
@@ -131,19 +131,38 @@
 
 
 <script>
+    $("[cause='{{ stats.beneficiary }}']").addClass("active");
+    $("[search='{{ stats.search_provider }}']").addClass("active");
+    $("[ads='{{ stats.ad_network }}']").addClass("active");
+
+    function get_preferences () {
+        return {
+            beneficiary: $(".cause-option.active").attr("cause"),
+            search: $(".search-option.active").attr("search"),
+            ads: $(".ad-option.active").attr("ads"),
+        }
+    }
+
+    function send_preferences () {
+        $.post("/user/preference", get_preferences());
+    }
+
     $(".cause-option").click(function () {
         $(".cause-option").removeClass("active");
         $(this).addClass("active");
+        send_preferences();
     });
 
     $(".search-option").click(function () {
         $(".search-option").removeClass("active");
         $(this).addClass("active");
+        send_preferences();
     });
 
     $(".ad-option").click(function () {
         $(".ad-option").removeClass("active");
         $(this).addClass("active");
+        send_preferences();
     });
 
 </script>
