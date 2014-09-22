@@ -1,0 +1,5 @@
+# Include the base requirements
+-r requirements.txt
+
+# Stuff needed only in prod environments
+psycopg2
