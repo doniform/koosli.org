@@ -48,7 +48,6 @@ class UserTest(TestCase):
         self.assertIsNone(invalid_user)
 
 
-
     def test_login(self):
         self._test_get_request(url_for('user.login'), 'user_login.html')
         data = {
@@ -72,7 +71,6 @@ class UserTest(TestCase):
         response = self.client.post(url_for('user.login'), data=invalid_password, follow_redirects=True)
         self.assert_200(response)
         self.assertTrue('Wrong password or username' in response.data)
-
 
 
     def test_logout(self):
