@@ -1,5 +1,6 @@
 base:
     '*':
+        - secure
         - users
 
     'vagrant':
