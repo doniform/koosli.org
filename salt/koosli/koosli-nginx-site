@@ -1,0 +1,31 @@
+{% set koosli = pillar.get('koosli', {}) -%}
+{% set bind_url = koosli.get('bind_url', 'koosli.org') -%}
+
+upstream koosli {
+  least_conn;
+  server unix:///tmp/koosli.socket;
+}
+
+# Redirect www.koosli.org -> koosli.org
+server {
+  listen 80;
+  server_name www.{{ bind_url }};
+  return 301 $scheme://{{ bind_url }}$request_uri;
+}
+
+server {
+  listen 80;
+  server_name {{ bind_url }};
+  charset utf-8;
+
+  location / {
+    include uwsgi_params;
+
+    uwsgi_pass koosli;
+    uwsgi_param Host $host;
+    uwsgi_param X-Real-IP $remote_addr;
+    uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
+    uwsgi_param X-Forwarded-Proto $http_x_forwarded_proto;
+  }
+
+}
