@@ -1,4 +1,5 @@
-# Actual code deployed by Travis and fabric, just set up the virtualenv and the directories needed
+# Actual code is deployed by Travis with Fabric, salt merely sets up the server and prepares it
+# for deployment
 
 {% set koosli = pillar.get('koosli', {}) %}
 {% home = koosli.get('home', '/srv/koosli.org') %}
@@ -53,11 +54,47 @@ koosli-log-dir:
     - user: root
     - group: www
     - mode: 775
+    - require:
+        - user: uwsgi-systemuser
+
+
+koosli-entry-point:
+  file.managed:
+    - name: /srv/koosli/koosli_entry_point.py
+    - source: salt://koosli/entry_point.py
+    - template: jinja
+
+
+koosli-prod-config:
+  file.managed:
+    - name: /srv/koosli/prod_config.py
+    - source: salt://koosli/config.py
+    - user: root
+    - group: uwsgi
+    - mode: 440
+    - template: jinja
+    - show_diff: False
+    - require:
+      - user: uwsgi-systemuser
+
+
+koosli-postgres:
+  postgres_user.present:
+    - name: koosli
+    - password: "{{ pillar['koosli:db_password'] }}"
+    - refresh_password: True
+
+  postgres_database.present:
+    - name: koosli_rel
+    - owner: koosli
+    - require:
+      - postgres_user: koosli-postgres
 
 
 koosli-nginx-site:
   file.managed:
-    - name: /etc/nginx/sites-enabled/koosli.org
-    - source: salt://koosli/koosli-nginx-site
-    - require:
-      - pkg: nginx
+    - name: /etc/nginx/sites-enabled/thusoy.com
+    - source: salt://koosli/nginx/thusoy.com
+    - template: jinja
+    - watch_in:
+      - service: nginx
