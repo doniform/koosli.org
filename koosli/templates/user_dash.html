@@ -1,1 +1,176 @@
-<h1>User dash</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-2">
+        <form method="get" action="{{ url_for('search.do_search') }}" class="form-inline col-sm-8 col-sm-offset-2">
+            <div class="input-group max-width">
+                <div class="input-group-addon glyphicon glyphicon-search"></div>
+                <input type="text" name="q" placeholder="search" class="form-control">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row choice-row">
+    <div class="col-sm-2">
+        <span class="glyphicon glyphicon-heart" style="font-size:70px; margin-top: 50px; color:red"></span>
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="cause-option" cause="wikipedia">
+                    <div>
+                        <img width="50" height="50" src="{{ url_for('static', filename='img/wikipedia.png') }}" />
+                    </div>
+                    <div>
+                        <label class="text-center">Wikipedia</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="cause-option" cause="mozilla">
+                    <div>
+                        <img width="50" height="50" src="{{ url_for('static', filename='img/firefox.png') }}" />
+                    </div>
+                    <div>
+                        <label class="text-center">Mozilla</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="cause-option" cause="eff">
+                    <div>
+                        <img width="50" height="50" src="{{ url_for('static', filename='img/eff.png') }}" />
+                    </div>
+                    <div>
+                        <label class="text-center">Electronic Frontier Foundation</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="cause-option" cause="doctors">
+                    <div>
+                        <img width="100" height="50" src="{{ url_for('static', filename='img/doctors.png') }}" />
+                    </div>
+                    <div>
+                        <label class="text-center">Doctors without borders</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form class="col-sm-10 col-sm-offset-2">
+        <h4>Propose any preferred beneficiaries by name and/or URL</h4>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text" id="beneficiary" name="beneficiary" class="form-control" placeholder="Name">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" id="beneficiary-url" name="beneficiary-url" class="form-control" placeholder="URL">
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-default" type="submit">Propose</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="row choice-row">
+    <div class="col-sm-2">
+        <span class="glyphicon glyphicon-search" style="font-size:70px; margin-top: 50px"></span>
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="search-option" search="bing">
+                    <div>
+                        <img width="100" height="50" src="{{ url_for('static', filename='img/bing.png') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="search-option" search="yahoo">
+                    <div>
+                        <img width="100" height="50" src="{{ url_for('static', filename='img/yahoo.png') }}" />
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="row choice-row">
+    <div class="col-sm-2">
+        <span class="glyphicon glyphicon-bullhorn" style="font-size:70px; margin-top: 50px"></span>
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="ad-option" ads="yahooboss">
+                    <div>
+                        <img width="100" height="50" src="{{ url_for('static', filename='img/yahooboss.png') }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="checkbox">
+        <label>
+            <input id="ads-off" type="checkbox"> Turn advertising off - or - <a href="/why-ads">why advertising?</a>
+        </label>
+    </div>
+</div>
+
+
+<script>
+    $("[cause='{{ stats.beneficiary }}']").addClass("active");
+    $("[search='{{ stats.search_provider }}']").addClass("active");
+    $("[ads='{{ stats.ad_network }}']").addClass("active");
+    $("#ads-off").prop("checked", "{{ stats.advertising_off }}" === "True" ? true : false);
+
+    function get_preferences () {
+        return {
+            beneficiary: $(".cause-option.active").attr("cause"),
+            search: $(".search-option.active").attr("search"),
+            ads: $(".ad-option.active").attr("ads"),
+            advertising_off: $("#ads-off").prop("checked")
+        }
+    }
+
+    function send_preferences () {
+        $.post("/user/preference", get_preferences());
+    }
+
+    $(".cause-option").click(function () {
+        $(".cause-option").removeClass("active");
+        $(this).addClass("active");
+        send_preferences();
+    });
+
+    $(".search-option").click(function () {
+        $(".search-option").removeClass("active");
+        $(this).addClass("active");
+        send_preferences();
+    });
+
+    $(".ad-option").click(function () {
+        $(".ad-option").removeClass("active");
+        $(this).addClass("active");
+        send_preferences();
+    });
+
+    $("#ads-off").click(function () {
+        send_preferences();
+    });
+
+</script>
+
+{% endblock %}

@@ -9,26 +9,38 @@
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <script type="text/javascript"
+        src="http://ajax.microsoft.com/ajax/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}' type='text/javascript'%3E%3C/script%3E"));
+    }
+    </script>
 </head>
-<body class="container">
+<body>
+    <div id="wrapper" class="container">
+        <div id="header">
+            {% include "header.html" %}
+        </div>
+        <div id="content">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-info" role="alert">
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            {% endwith %}
 
-    <div class="navbar" role="navigation">
-        <ul class="nav navbar-nav pull-right">
-            <li><a href="{{ url_for('settings.settings_main') }}">Settings <span class="glyphicon glyphicon-cog"></span></a></li>
-        </ul>
+            {% block content %}{% endblock %}
+        </div>
+        <div id="footer">
+            {% include "footer.html" %}
+        </div>
     </div>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    {% block content %}
-    {% endblock %}
 </body>
 </html>

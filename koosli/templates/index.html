@@ -4,13 +4,22 @@
 
     <div class="banner">
         <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
+        <h3 class="max-width text-center">People, Privacy and Choice</h3>
     </div>
 
     <div class="row">
-        <form method="get" action="{{ url_for('.do_search') }}" class="search-box col-sm-8 col-sm-offset-3">
-            <input type="text" name="q">
-            <input type="submit" class="btn btn-primary" value="Søk">
+        <form method="get" action="{{ url_for('.do_search') }}" class="form-inline col-sm-8 col-sm-offset-2">
+            <div class="input-group max-width">
+                <div class="input-group-addon glyphicon glyphicon-search"></div>
+                <input type="text" name="q" placeholder="search" class="form-control">
+            </div>
         </form>
+    </div>
+
+    <div class="row">
+        <p class="max-width text-center">
+            <b>All</b> advertising revenue goes to charity; You choose which!
+        </p>
     </div>
 
 {% endblock %}

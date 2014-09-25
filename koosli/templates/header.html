@@ -1,0 +1,22 @@
+<div class="navbar" role="navigation">
+    <ul class="nav navbar-nav pull-right">
+        <li><a href="/">
+            Home <span class="glyphicon glyphicon-home"></span>
+        </a></li>
+        {% if current_user.is_authenticated() %}
+        <li><a href="{{ url_for('user.index') }}">
+            Settings <span class="glyphicon glyphicon-cog"></span>
+        </a></li>
+        <li><a href="{{ url_for('user.logout') }}">
+            Log out <span class="glyphicon glyphicon-log-out"></span>
+        </a></li>
+        {% else %}
+        <li><a href="{{ url_for('user.login') }}">
+            Log in <span class="glyphicon glyphicon-log-in"></span>
+        </a></li>
+        <li><a href="{{ url_for('user.register') }}">
+            Register <span class="glyphicon glyphicon-asterisk"></span>
+        </a></li>
+    {% endif %}
+    </ul>
+</div>

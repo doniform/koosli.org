@@ -22,18 +22,20 @@ class TestCase(Base):
     def init_data(self):
         '''Initialize the databse with dummy users'''
 
+        self.stats = UserStats()
         self.demo = User(
                 email=u'demo@example.com',
                 password=u'123456',
                 role_code=USER,
                 status_code=ACTIVE,
-                user_stats=UserStats())
+                user_stats = self.stats)
         self.admin = User(
                 email=u'admin@example.com',
                 password=u'123456',
                 role_code=ADMIN,
                 status_code=ACTIVE,
                 user_stats=UserStats())
+        db.session.add(self.stats)
         db.session.add(self.demo)
         db.session.add(self.admin)
         db.session.commit()
