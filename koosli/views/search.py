@@ -3,9 +3,13 @@ import importlib
 
 mod = Blueprint('search', __name__)
 
-@mod.route('/')
+@mod.route('/beta')
 def search_main():
     return render_template('index.html')
+
+@mod.route('/')
+def splash():
+    return render_template('splash.html')
 
 
 @mod.route('/about')
