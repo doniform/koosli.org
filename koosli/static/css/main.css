@@ -8,7 +8,7 @@ html, body {
 }
 body {
     /* http://www.hdwallpapers.in/norway_fjord-wallpapers.html */
-    background-image: url(../img/fjord.jpg);
+    /*background-image: url(../img/fjord.jpg);*/
     background-size: cover;
 }
 #wrapper {
@@ -99,16 +99,14 @@ img {
     transition: 0.2s;
 }
 
-.blue-bg {
+.fjord-bg {
     position: absolute;
-    background-image: url(../img/blue.jpg);
-    background-position-x: 50%;
-    background-position-y: 50%;
+    background-image: url(../img/fjord.jpg);
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     width: 100%;
-    height: 3000px;
+    height:100%;
     z-index: 0;
     background-size: 100%;
     top:0;
