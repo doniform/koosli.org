@@ -2,11 +2,12 @@
 # for deployment
 
 {% set koosli = pillar.get('koosli', {}) %}
-{% home = koosli.get('home', '/srv/koosli.org') %}
+{% set home = koosli.get('home', '/srv/koosli.org') %}
 
 include:
   - nginx
   - uwsgi
+  - postgres.client
 
 koosli-deps:
   pip.installed:
@@ -15,12 +16,12 @@ koosli-deps:
   pkg.installed:
     - pkgs:
       - python-dev # needed to compile native code
-      - libpq-dev # needed to compile psql bindings
+      - libpq-dev # needed to compile postgres bindings
 
 
 koosli:
   virtualenv.managed:
-    - name: {{ home }]/venv
+    - name: {{ home }}/venv
     - requirements: salt://koosli/prod-requirements.txt
     - require:
       - pip: koosli-deps
@@ -32,7 +33,7 @@ koosli:
     - template: jinja
     - show_diff: False
     - user: root
-    - group: www
+    - group: uwsgi
     - mode: 640
     - require:
       - virtualenv: koosli
@@ -43,7 +44,7 @@ koosli:
 koosli-uwsgi-conf:
   file.managed:
     - name: /opt/apps/koosli.ini
-    - source: salt://koosli/uwsgi_conf
+    - source: salt://koosli/uwsgi-config.ini
     - makedirs: True
 
 
@@ -52,7 +53,7 @@ koosli-log-dir:
     - name: /var/log/koosli
     - makedirs: True
     - user: root
-    - group: www
+    - group: uwsgi
     - mode: 775
     - require:
         - user: uwsgi-systemuser
@@ -60,15 +61,15 @@ koosli-log-dir:
 
 koosli-entry-point:
   file.managed:
-    - name: /srv/koosli/koosli_entry_point.py
+    - name: {{ home }}/koosli_entry_point.py
     - source: salt://koosli/entry_point.py
     - template: jinja
 
 
 koosli-prod-config:
   file.managed:
-    - name: /srv/koosli/prod_config.py
-    - source: salt://koosli/config.py
+    - name: {{ home }}/prod_settings.py
+    - source: salt://koosli/prod_settings.py
     - user: root
     - group: uwsgi
     - mode: 440
@@ -81,8 +82,10 @@ koosli-prod-config:
 koosli-postgres:
   postgres_user.present:
     - name: koosli
-    - password: "{{ pillar['koosli:db_password'] }}"
+    - password: "{{ koosli['db_password'] }}"
     - refresh_password: True
+    - require:
+        - pkg: postgres-client
 
   postgres_database.present:
     - name: koosli_rel
@@ -93,8 +96,8 @@ koosli-postgres:
 
 koosli-nginx-site:
   file.managed:
-    - name: /etc/nginx/sites-enabled/thusoy.com
-    - source: salt://koosli/nginx/thusoy.com
+    - name: /etc/nginx/sites-enabled/koosli.org
+    - source: salt://koosli/nginx/koosli.org
     - template: jinja
     - watch_in:
       - service: nginx
