@@ -4,6 +4,7 @@ import os
 
 from flask.ext.testing import TestCase as Base
 from flask.ext.login import login_user, logout_user
+from flask import url_for
 
 from koosli import create_app, db
 from koosli.user import User, UserStats, ADMIN, USER, ACTIVE
@@ -62,10 +63,10 @@ class TestCase(Base):
             'email': email,
             'password': '123456',
         }
-        response = self.client.post('/user/login', data=data, follow_redirects=True)
+        response = self.client.post(url_for('user.login'), data=data, follow_redirects=True)
 
     def logout(self):
-        response = self.client.get('/user/logout', follow_redirects=True)
+        response = self.client.get(url_for('user.logout'), follow_redirects=True)
         logout_user()
 
     def _test_get_request(self, endpoint, template=None, redirect=None):

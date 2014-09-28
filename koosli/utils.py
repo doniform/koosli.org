@@ -6,7 +6,7 @@ import os
 import arrow
 
 # Form validation
-PASSWORD_LEN_MIN = 6
+PASSWORD_LEN_MIN = 3
 PASSWORD_LEN_MAX = 1024
 
 # Model

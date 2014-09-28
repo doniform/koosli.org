@@ -9,12 +9,12 @@ class RegistrationForm(Form):
 
     email = EmailField('Email Address', [validators.Length(min=6, max=35), validators.email()])
     password = PasswordField('Password', [
-        validators.Required(),
-        validators.Length(min=PASSWORD_LEN_MIN, max=PASSWORD_LEN_MAX),
-        validators.EqualTo('confirm', message='Passwords must match')
+        #validators.Required(),
+        validators.Length(max=PASSWORD_LEN_MAX),
+        #validators.EqualTo('confirm', message='Passwords must match')
     ])
-    confirm = PasswordField('Repeat Password')
-    accept_tos = BooleanField('I accept the TOS', [validators.Required()])
+    #confirm = PasswordField('Repeat Password')
+    #accept_tos = BooleanField('I accept the TOS', [validators.Required()])
 
 
 class PreferenceForm(Form):

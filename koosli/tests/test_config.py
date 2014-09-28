@@ -6,6 +6,7 @@ DEBUG = True
 
 SECRET_KEY = 'not a secret'
 
+SPLASH_REGISTRATION = False
 
 #=========================================
 # Search Providers

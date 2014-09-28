@@ -8,6 +8,11 @@ SECRET_KEY = 'not a secret'
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+
+#=========================================
+# Database Config
+#=========================================
+
 # Flask-Sqlalchemy: http://packages.python.org/Flask-SQLAlchemy/config.html
 SQLALCHEMY_ECHO = True
 

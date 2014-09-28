@@ -1,9 +1,11 @@
+from flask import url_for
+
 from koosli.tests import TestCase
 
 class SearchTest(TestCase):
 
     def test_main_page(self):
-        self._test_get_request('/', 'index.html')
+        self._test_get_request(url_for('search.search_main'), 'index.html')
 
     def test_about(self):
         self._test_get_request('/about', 'about.html')

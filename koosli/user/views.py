@@ -11,10 +11,10 @@ from .forms import RegistrationForm, PreferenceForm
 from koosli import db
 
 
-mod = Blueprint('user', __name__, url_prefix='/user')
+mod = Blueprint('user', __name__, url_prefix='')
 
 
-@mod.route('')
+@mod.route('/profile')
 @login_required
 def index():
     '''The user dashboard where stats can be seen and preferences changed'''
@@ -34,11 +34,11 @@ def login():
 
     if registered_user is None:
         flash('This email does not belong to a registered user' , 'error')
-        return redirect('/user/login')
+        return redirect(url_for('user.login'))
 
     if not registered_user.check_password(password):
         flash('Wrong password or username' , 'error')
-        return redirect('/user/login')
+        return redirect(url_for('user.login'))
 
     login_user(registered_user)
     return redirect(request.args.get('next') or '/user')
@@ -49,10 +49,14 @@ def register():
     form = RegistrationForm(request.form)
 
     if request.method == 'GET' or not form.validate():
+        if APP.config['SPLASH_REGISTRATION']:
+            return render_template('splash.html', form=form)
         return render_template('user_register.html', form=form)
 
     if User.email_taken(form.email.data):
         flash('This email belongs to a registered user')
+        if APP.config['SPLASH_REGISTRATION']:
+            return render_template('splash.html', form=form, message="Denne eposten er allerede registrert.")
         return render_template('user_register.html', form=form)
 
     stats = UserStats()
@@ -62,6 +66,9 @@ def register():
     db.session.commit()
     login_user(user)
     flash('User successfully registered')
+
+    if APP.config['SPLASH_REGISTRATION']:
+        return render_template('splash.html', message="Takk for interessen!")
     return redirect(url_for('user.index'))
 
 
