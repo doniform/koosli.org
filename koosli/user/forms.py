@@ -9,6 +9,7 @@ class RegistrationForm(Form):
 
     email = EmailField('Email Address', [validators.Length(min=6, max=35), validators.email()])
     password = PasswordField('Password', [
+        # Not required for interest registration
         #validators.Required(),
         validators.Length(max=PASSWORD_LEN_MAX),
         #validators.EqualTo('confirm', message='Passwords must match')
