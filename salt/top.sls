@@ -5,6 +5,8 @@ base:
 
     'koosli.org':
         - users
+        - ssh
+        - sudo
 
     'vagrant':
         - postgres.server
