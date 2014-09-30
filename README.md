@@ -36,7 +36,7 @@ Spin up the vagrant env:
 
 Build and deploy the app:
 
-    $ python setup.py sdist --formats gztar
+    $ python setup.py sdist
     $ fab deploy_vagrant
 
 **Note:** `deploy_vagrant` is just an alias for `deploy` with the host configured to
