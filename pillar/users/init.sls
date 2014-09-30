@@ -9,3 +9,9 @@ users:
             # phone
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFoK7JxIWtlx9tsqC9Wtq36juOIZXc56DwpA7RLhCqrEmAG5OaW5jjjBwUOu3cFQ9OlSAcrLyX/M1EAa+xYkHYEeugkfe2VRdkkZ9sVo8/Es6kBGyOS/9ay7Tu1qn1P2GNsUdQjPIce6ppEy3Ro83YcB/sI2rpcccgVbiHYuZqcLRHQaa90F8xL5sdPm7kGE5MxjRVu6Oc0mTC6W4ZzFX+ZfnYTPVbv0N1mhO9ObeTsSHxSNXmsbVgYwjqHpKgcrxgCGKY3t9qd3M9kJqO4yJLLbVmCYcnCj/zX2ddYTNVWv9qGw36kcz7nwGB0Z+U65CNYZErJweo2rR964ttSC3WL269MoeYdEhTEp8LFb5zFUHDfRiGJyeMbHMlJ2eXgbcEwMHqspyKd95mIagzr7tpHkNjIcJRTq1udZqMx5fxh0ymzIMrERBOJXZ/25smtUGEPn0pefHqEpXiYpM5ZqyUWSOJIssupFZrsNVqds/V7/M35mCdyWxVZnFC1LeWCMq76iHgTNfSxj97AVpmBVYnMkAne6s4SwJfPeGAL86pAfsniGPX6YOz85V6KXem0g+/U5KuqkiOl0zkeqRA+lzYwJOv1CLsoy0TemB22pz1ftWIjSyomv05PQD3ih75K/Rcexqmf2LwhdbjZILeIwG2p5z0YLHkHlpiZYz+CLnzEw==
         password_pillar: TARJEI_PASSWORD
+
+    travis-ci:
+        fullname: Travis CI (auto deployments)
+        ssh_auth:
+            # Private part decrypted from salt/secure/init.sls
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6TrUkVPdI2EnczvOotG/TlAPLK4OKH3geZ8G6H2VSFFPh5zi/TFPtkY4dDdxn7sMQE/39JLxvIaUUpepGUAaSN3PY1hok4d+v/BoOV8Id6Ma0c3udEsc251p1/rquibjboVburLPVF9DgqHe0y9oogUD4ADlzytdhaCfAt2WrAic+N2knXagFhrGdp08PhVlqvTjLxwg5AQHBf7hKRaNOu3At99n5ymdI4RHVVVJGERB9YNRGXuAX2PvhzWtcl0lJIWTXS7dPuP5/Dcq87wIc1CHMWdzFBfzkjSFW4tzxXXwsTH+VqB5fH7/KtFfNvTKJR61r71NOJO0aFvqqbXXrSq+ApVmNKhX/fmgEB8YoMhHfqGAXYXcRtZgEteyfGmaU7VNepRkTn859th/IGGimJirJTa67sNjMRwzbyEyw8uoBBC7Y4JCaQ+kWgrI751gIec586RAL/YAbWiDa9McErRc3Y9ry8ZcrGIxDST0lpiKizzNXMdR8AHA8wMHo37ueHh4t7q1FUbOrOY17KdzbaOQctXh0Rxlwfckaw4gJiqh4Eapsdmhc17zWvtxIerUpWSrHUf97t5nMNkcztLk4WN+/fkG1QzputNZBRMrLpLqA6iYAI10Egy0oZLq38z1PJn+Ylj0opc9dllkeI68526okfKDcWLrjG2WgQjOjeQ==
