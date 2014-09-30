@@ -57,7 +57,7 @@ def deploy():
     sudo('service uwsgi restart')
 
 
-@hosts('vagrant@127.0.0.1:2222')
+@hosts('vagrant@10.10.10.33')
 def deploy_vagrant():
     """ Shortcut for deploying to vagrant.
 
