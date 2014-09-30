@@ -10,6 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
+  config.vm.network "private_network", ip: "10.10.10.33"
+
   # Share the salt config with the guest
   config.vm.synced_folder "salt", "/srv/salt/"
   config.vm.synced_folder "pillar", "/srv/pillar"
