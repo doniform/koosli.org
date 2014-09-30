@@ -34,9 +34,10 @@ koosli:
     - show_diff: False
     - user: root
     - group: uwsgi
-    - mode: 640
+    - mode: 440
     - require:
       - virtualenv: koosli
+      - user: uwsgi-systemuser
     - watch_in:
       - service: uwsgi
 
@@ -70,19 +71,6 @@ koosli-entry-point:
     - name: {{ home }}/koosli_entry_point.py
     - source: salt://koosli/entry_point.py
     - template: jinja
-
-
-koosli-prod-config:
-  file.managed:
-    - name: {{ home }}/prod_settings.py
-    - source: salt://koosli/prod_settings.py
-    - user: root
-    - group: uwsgi
-    - mode: 440
-    - template: jinja
-    - show_diff: False
-    - require:
-      - user: uwsgi-systemuser
 
 
 koosli-postgres:
