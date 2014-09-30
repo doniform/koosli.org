@@ -12,3 +12,5 @@ SEARCH_PROVIDERS = {
 }
 
 BING_API_KEY = "{{ pillar['BING_API_KEY'] }}"
+
+LOG_CONF_PATH = '/srv/koosli.org/log_conf.yaml'

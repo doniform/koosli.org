@@ -65,6 +65,19 @@ koosli-log-dir:
         - user: uwsgi-systemuser
 
 
+koosli-log-conf:
+  file.managed:
+    - name: {{ home }}/log_conf.yaml
+    - source: salt://koosli/log_conf.yaml
+    - user: root
+    - group: uwsgi
+    - mode: 440
+    - require:
+      - user: uwsgi-systemuser
+    - watch_in:
+      - service: uwsgi
+
+
 koosli-entry-point:
   file.managed:
     - name: {{ home }}/koosli_entry_point.py
