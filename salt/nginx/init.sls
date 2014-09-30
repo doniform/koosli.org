@@ -49,40 +49,11 @@ nginx-private-dir:
       - user: nginx-systemuser
 
 
-# Disable defaults
+# Disable default site
 nginx-defaults:
   file.absent:
     - names:
       - /etc/nginx/sites-enabled/default
-    {% for default_file in ['fastcgi.conf', 'fastcgi_params', 'mime.types', 'nginx.conf',
-      'scgi_params', 'uwsgi_params'] %}
-      - /etc/nginx/{{ default_file }}.default
-    {% endfor %}
-
-
-nginx-www-certificate:
-  file.managed:
-    - name: /etc/nginx/ssl/www.koosli.org.crt
-    - source: salt://nginx/ssl/www.koosli.org.crt
-    - require:
-        - file: nginx-certificates-dir
-    - watch_in:
-      - service: nginx
-
-
-nginx-www-key:
-  file.managed:
-    - name: /etc/nginx/private/www.koosli.org.key
-    - contents_pillar: NGINX_WWW_PRIVATE_KEY
-    - user: root
-    - group: nginx
-    - show_diff: False
-    - mode: 640
-    - require:
-      - user: nginx-systemuser
-      - file: nginx-private-dir
-    - watch_in:
-      - service: nginx
 
 
 nginx-sites-enabled:
