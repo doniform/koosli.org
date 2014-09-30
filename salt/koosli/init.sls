@@ -2,7 +2,7 @@
 # for deployment
 
 {% set koosli = pillar.get('koosli', {}) %}
-{% set home = koosli.get('home', '/srv/koosli.org') %}
+{% set home = '/srv/koosli.org' %}
 
 include:
   - nginx
@@ -46,6 +46,12 @@ koosli-uwsgi-conf:
     - name: /opt/apps/koosli.ini
     - source: salt://koosli/uwsgi-config.ini
     - makedirs: True
+
+
+koosli-static-dir:
+  file.directory:
+    - name: {{ home }}/static
+    - mode: 755
 
 
 koosli-log-dir:
