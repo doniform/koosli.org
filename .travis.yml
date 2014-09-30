@@ -14,6 +14,16 @@ script:
   # Add code coverage to gh-pages
   - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then ./tools/coverage_to_gh_pages.sh; fi
 
+  # If we're on master and not a PR, thus a legitimate authenticated merge or push, deploy the code
+  # First, decrypt:
+  - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then ./tools/secure_data.py decrypt -k $SALT_SECRET; fi
+
+  # Configure SSH keys for travis-ci user
+  - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then python -c "import yaml; fh = open('pillar/secure/init.sls'); d = yaml.load(fh); print d['TRAVIS_SSH_PRIVATE_KEY']" > ~/.ssh/id_rsa; fi
+
+  # Do the actual provision+deploy
+  - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then fab provision deploy -H travis@koosli.dev; fi
+
 notifications:
   email: false
 
