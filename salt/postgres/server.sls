@@ -11,6 +11,7 @@ postgres-server:
     - name: postgresql-{{ version }}
     - require:
       - pkgrepo: postgres-server
+    - order: 1
 
   file.managed:
     - name: /etc/postgresql/{{ version }}/main/pg_hba.conf

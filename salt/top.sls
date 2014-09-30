@@ -4,3 +4,6 @@ base:
 
     'koosli.org':
         - users
+
+    'vagrant':
+        - postgres.server
