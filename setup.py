@@ -15,8 +15,6 @@ setup(
         '': [
             path.join('templates', '*.html'),
             path.join('templates', '*', '*.html'),
-            path.join('static', '*'),
-            path.join('static', '*', '*'),
         ],
     },
     zip_safe=False
