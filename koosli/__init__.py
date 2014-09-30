@@ -1,12 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from logging import getLogger
+import textwrap
+import yaml
 
 from koosli.extensions import db, login_manager
 
 # In case of import *
 __all__ = ['create_app', 'db']
+_logger = getLogger(__name__)
 
 def create_app(config_file=None):
     app = Flask('koosli')
+
+    _init_logging(app)
 
     configure_application(app, config_file=config_file)
     configure_blueprints(app)
@@ -39,6 +45,33 @@ def configure_error_handlers(app):
 
     @app.errorhandler(500)
     def server_error_page(error):
+        '''Something failed somewhere. Log everything that might come in handy for debugging. '''
+        log_msg = textwrap.dedent("""Error occured!
+            Path:                 %s
+            Params:               %s
+            HTTP Method:          %s
+            Client IP Address:    %s
+            User Agent:           %s
+            User Platform:        %s
+            User Browser:         %s
+            User Browser Version: %s
+            HTTP Headers:         %s
+            Exception:            %s
+            """ % (
+                request.path,
+                request.values,
+                request.method,
+                request.remote_addr,
+                request.user_agent.string,
+                request.user_agent.platform,
+                request.user_agent.browser,
+                request.user_agent.version,
+                request.headers,
+                error
+            )
+        )
+        _logger.exception(log_msg)
+
         return render_template('errors/server_error.html'), 500
 
 
@@ -81,3 +114,11 @@ def configure_extensions(app):
         from user.models import User
         return User.query.get(id)
     login_manager.setup_app(app)
+
+
+def _init_logging(app):
+    '''Configure logging if a `LOG_CONF_PATH` is defined. '''
+    log_config_dest = app.config.get('LOG_CONF_PATH')
+    if log_config_dest:
+        with open(log_config_dest) as log_config_file:
+            logging.config.dictConfig(yaml.load(log_config_file))
