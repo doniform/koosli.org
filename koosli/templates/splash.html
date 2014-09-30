@@ -4,9 +4,13 @@
 <div class="fjord-bg"></div>
 <div class="banner whitetron">
     <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
-    <h3 class="max-width text-center">Koselig Norsk søk, kommer snart!</h3>
+    <h4 class="max-width text-center">
+        Web den norske måten:<br>
+        Om mennesker, personvern og valg.<br>
+        Kommer i 2015!
+    </h4>
 
-    <div class="row" style="margin-top:100px">
+    <div class="row" style="margin-top:50px">
         {% if message %}
         <div class="alert-info col-xs-12">{{ message }}</div>
         {% endif %}
@@ -23,9 +27,11 @@
             <form class="col-xs-12" id="interest-form" action="/register" method="POST">
                 <div class="row">
                     <div class="col-xs-12">
-                        <p>Interessert i å delta i betatesting?</p>
-                        <input id="email" name="email" class="form-control" type="text" name="interest-email" placeholder="Email address">
-                        <input class="form-control" style="width:100px; margin-top:5px" type="submit" value="Send">
+                        <p class="text-center">Interessert i å delta i betatesting?</p>
+                        <input id="email" style="width:70%; margin:0 auto" name="email" class="form-control" type="text" name="interest-email" placeholder="Email address">
+                        <p class="text-center">
+                            <input class="form-control" style="width:100px;display:inline; margin-top:5px" type="submit" value="Send">
+                        </p>
                     </div>
                 </div>
             </form>

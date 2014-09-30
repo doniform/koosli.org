@@ -91,8 +91,9 @@ img {
 
 .fjord-bg {
     position: absolute;
-    background-image: url(../img/fjord.jpg);
-    background-size: cover;
+    background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trondheim_H%C3%B8st.jpg/1280px-Trondheim_H%C3%B8st.jpg);
+    background-repeat:no-repeat;
+    background-size: 100% auto !important;
     background-position: center center;
     background-attachment: fixed;
     width: 100%;
@@ -106,7 +107,15 @@ img {
 
 .whitetron {
     background: white;
-    width: 500px;
+    width: 50%;
+    max-width: 500px;
     margin:0 auto;
     border-radius: 7px;
+    padding:10px;
+}
+
+@media screen and (max-width: 1280px) {
+    .fjord-bg {
+        background-size: auto 100% !important;
+    }
 }
