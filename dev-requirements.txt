@@ -1,4 +1,4 @@
--r requirements.txt
+-r salt/koosli/requirements.txt
 
 # Stuff only needed in dev:
 nose
@@ -7,3 +7,5 @@ coverage
 Flask-Testing==0.4.2
 blinker==1.3
 pycrypto
+
+fabric
