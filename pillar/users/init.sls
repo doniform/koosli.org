@@ -9,6 +9,8 @@ users:
             # phone
             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFoK7JxIWtlx9tsqC9Wtq36juOIZXc56DwpA7RLhCqrEmAG5OaW5jjjBwUOu3cFQ9OlSAcrLyX/M1EAa+xYkHYEeugkfe2VRdkkZ9sVo8/Es6kBGyOS/9ay7Tu1qn1P2GNsUdQjPIce6ppEy3Ro83YcB/sI2rpcccgVbiHYuZqcLRHQaa90F8xL5sdPm7kGE5MxjRVu6Oc0mTC6W4ZzFX+ZfnYTPVbv0N1mhO9ObeTsSHxSNXmsbVgYwjqHpKgcrxgCGKY3t9qd3M9kJqO4yJLLbVmCYcnCj/zX2ddYTNVWv9qGw36kcz7nwGB0Z+U65CNYZErJweo2rR964ttSC3WL269MoeYdEhTEp8LFb5zFUHDfRiGJyeMbHMlJ2eXgbcEwMHqspyKd95mIagzr7tpHkNjIcJRTq1udZqMx5fxh0ymzIMrERBOJXZ/25smtUGEPn0pefHqEpXiYpM5ZqyUWSOJIssupFZrsNVqds/V7/M35mCdyWxVZnFC1LeWCMq76iHgTNfSxj97AVpmBVYnMkAne6s4SwJfPeGAL86pAfsniGPX6YOz85V6KXem0g+/U5KuqkiOl0zkeqRA+lzYwJOv1CLsoy0TemB22pz1ftWIjSyomv05PQD3ih75K/Rcexqmf2LwhdbjZILeIwG2p5z0YLHkHlpiZYz+CLnzEw==
         password_pillar: TARJEI_PASSWORD
+        groups:
+            - admin
 
     travis-ci:
         fullname: Travis CI (auto deployments)
