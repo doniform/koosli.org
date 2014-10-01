@@ -1,7 +1,6 @@
 base:
     '*':
         - koosli
-        - sudo
 
     'koosli.org':
         - users
