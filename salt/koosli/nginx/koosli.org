@@ -12,19 +12,46 @@ server {
     listen 80;
     server_name {{ bind_address }};
     charset utf-8;
-    return 301 https://{{ bind_address }}$request_uri;
+    return 302 https://beta.{{ bind_address }}$request_uri;
 }
 
 server {
     listen 80;
     server_name www.{{ bind_address }};
     charset utf-8;
-    return 301 https://{{ bind_address }}$request_uri;
+    return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+    listen 80;
+    server_name beta.{{ bind_address }};
+    charset utf-8;
+    return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+  listen 443;
+  server_name www.{{ bind_address }};
+  charset utf-8;
+  ssl on;
+  ssl_certificate ssl/www.koosli.org.crt;
+  ssl_certificate_key private/www.koosli.org.key;
+  return 302 https://beta.{{ bind_address }}$request_uri;
 }
 
 server {
   listen 443;
   server_name {{ bind_address }};
+  charset utf-8;
+  ssl on;
+  ssl_certificate ssl/www.koosli.org.crt;
+  ssl_certificate_key private/www.koosli.org.key;
+  return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+  listen 443;
+  server_name beta.{{ bind_address }};
   charset utf-8;
   ssl on;
   ssl_certificate ssl/www.koosli.org.crt;
