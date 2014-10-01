@@ -10,3 +10,5 @@ SQLALCHEMY_DATABASE_URL = "postgresql://koosli:{{ pillar['KOOSLI_DB_PASSWORD'] }
 SEARCH_PROVIDERS = {
     'bing': bing.Bing,
 }
+
+BING_API_KEY = "{{ pillar['BING_API_KEY'] }}"
