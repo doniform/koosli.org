@@ -10,6 +10,9 @@ script:
   # Run tests
   - nosetests --with-coverage --cover-package koosli --cover-branches --cover-html
 
+  # Do build
+  - python setup.py sdist
+
   # Do deployment stuff in script to fail build if something fails:
   # Add code coverage to gh-pages
   - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then ./tools/coverage_to_gh_pages.sh; fi
