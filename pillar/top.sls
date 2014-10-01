@@ -1,9 +1,9 @@
 base:
     '*':
-        - secure
         - users
 
     'koosli.org':
+        - secure
         - postgres.prod
 
     'vagrant':
