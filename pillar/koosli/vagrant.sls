@@ -1,8 +1,6 @@
 KOOSLI_DB_PASSWORD: vagrant
 KOOSLI_SECRET_KEY: yeahthatsecret
-koosli:
-    bind_address: koosli.dev
-    nginx_private_key: '-----BEGIN RSA PRIVATE KEY-----
+KOOSLI_NGINX_PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----
 
     MIIEpAIBAAKCAQEAxkK38w5FUh/DqSb1xdPcFzIHepxb2XWv7gwMfNLeIJwvp1aM
 
@@ -57,6 +55,9 @@ koosli:
     -----END RSA PRIVATE KEY-----
 
     '
+
+koosli:
+    bind_address: koosli.dev
     nginx_cert: '-----BEGIN CERTIFICATE-----
 
     MIIDMDCCAhgCCQCSDUGMX7PkgDANBgkqhkiG9w0BAQUFADBaMQswCQYDVQQGEwJB
