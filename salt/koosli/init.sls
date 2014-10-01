@@ -76,7 +76,7 @@ koosli-entry-point:
 koosli-postgres:
   postgres_user.present:
     - name: koosli
-    - password: "{{ koosli['db_password'] }}"
+    - password: "{{ pillar['KOOSLI_DB_PASSWORD'] }}"
     - refresh_password: True
     - require:
         - pkg: postgres-client
@@ -110,7 +110,7 @@ koosli-nginx-www-certificate:
 koosli-nginx-www-key:
   file.managed:
     - name: /etc/nginx/private/www.koosli.org.key
-    - contents_pillar: koosli:nginx_private_key
+    - contents_pillar: KOOSLI_NGINX_PRIVATE_KEY
     - user: root
     - group: nginx
     - show_diff: False

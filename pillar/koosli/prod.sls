@@ -1,4 +1,5 @@
 koosli:
+    bind_address: koosli.org
     nginx_cert: '-----BEGIN CERTIFICATE-----
 
     MIIHNzCCBh+gAwIBAgIDEw2gMA0GCSqGSIb3DQEBCwUAMIGMMQswCQYDVQQGEwJJ
