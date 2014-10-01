@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from logging import getLogger
+import os
 import textwrap
 import yaml
 
@@ -24,12 +25,12 @@ def create_app(config_file=None):
 
 def configure_application(app, config_file=None):
     '''Configure the flask application'''
+    core_config = os.path.abspath(os.path.join(os.path.dirname(__file__), 'core_config.py'))
+    app.config.from_pyfile(core_config)
 
     if config_file is not None:
         print 'Loading config from %s' % config_file
         app.config.from_pyfile(config_file)
-    else:
-        print 'Using default config'
 
 
 def configure_error_handlers(app):
