@@ -4,6 +4,7 @@ base:
 
     'koosli.org':
         - secure
+        - koosli.prod
         - postgres.prod
 
     'vagrant':
