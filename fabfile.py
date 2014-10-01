@@ -52,6 +52,7 @@ def deploy():
 
     # Unpack the static files
     sudo('tar xf /tmp/static-files.tar.gz -C /srv/koosli.org/static')
+    run('rm /tmp/static-files.tar.gz')
 
     # Restart the service
     sudo('service uwsgi restart')
