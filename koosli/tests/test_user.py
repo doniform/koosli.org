@@ -32,7 +32,7 @@ class UserTest(TestCase):
         self.assertIsNotNone(new_stats)
 
         response = self.client.post(url_for('user.register'), data=data, follow_redirects=True)
-        self.assertTrue('belongs to a registered user' in response.data)
+        self.assertEqual(response.status_code, 400)
 
         # Invalid data
         data_invalid = {
@@ -43,7 +43,7 @@ class UserTest(TestCase):
         }
 
         response = self.client.post(url_for('user.register'), data=data_invalid, follow_redirects=True)
-        self.assert_200(response)
+        self.assertEqual(response.status_code, 400)
         invalid_user = User.query.filter_by(email=data_invalid['email']).first()
         self.assertIsNone(invalid_user)
 
@@ -63,7 +63,6 @@ class UserTest(TestCase):
         }
         response = self.client.post(url_for('user.login'), data=invalid_email, follow_redirects=True)
         print response.data
-        self.assert_200(response)
         self.assertTrue('This email does not belong to a registered user' in response.data)
 
         invalid_password = {

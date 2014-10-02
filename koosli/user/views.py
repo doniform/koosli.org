@@ -48,16 +48,15 @@ def login():
 def register():
     form = RegistrationForm(request.form)
 
-    if request.method == 'GET' or not form.validate():
+    if request.method == 'GET':
         if APP.config['SPLASH_REGISTRATION']:
             return render_template('splash.html', form=form)
         return render_template('user_register.html', form=form)
 
-    if User.email_taken(form.email.data):
-        flash('This email belongs to a registered user')
+    if not form.validate():
         if APP.config['SPLASH_REGISTRATION']:
-            return render_template('splash.html', form=form, message="Denne eposten er allerede registrert.")
-        return render_template('user_register.html', form=form)
+            return render_template('splash.html', form=form), 400
+        return render_template('user_register.html', form=form), 400
 
     stats = UserStats()
     user = User(email=form.email.data, password=form.password.data, user_stats=stats)
@@ -65,10 +64,10 @@ def register():
     db.session.add(stats)
     db.session.commit()
     login_user(user)
-    flash('User successfully registered')
 
     if APP.config['SPLASH_REGISTRATION']:
-        return render_template('splash.html', message="Takk for interessen!")
+        flash('Takk for interessen!', 'info')
+        return redirect('/')
     return redirect(url_for('user.index'))
 
 

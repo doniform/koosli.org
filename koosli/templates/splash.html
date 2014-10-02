@@ -14,17 +14,32 @@
 
     <div class="row" style="margin-top:50px">
         {% if message %}
-        <div class="alert-info col-xs-12">{{ message }}</div>
         {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         {% if form %}
             {% if form.errors %}
-                <div class="alert-warning col-xs-12">
-                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-                    {% for error in field_errors %}
-                        <div>{{ error }}</div>
-                    {% endfor %}
+            <div class="alert alert-danger">
+            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                {% for error in field_errors %}
+                    <div>{{ error }}</div>
                 {% endfor %}
-                </div>
+            {% endfor %}
+            </div>
             {% endif %}
             <form class="col-xs-12" id="interest-form" action="/register" method="POST">
                 <div class="row">
