@@ -96,7 +96,7 @@ class UserTest(TestCase):
         current_app.login_manager.reload_user()
         response = self._test_get_request(url_for('user.index'), 'user_dash.html')
         self.logout()
-        self._test_get_request(url_for('user.index'), redirect='/user/login?next=%2Fuser%2F')
+        self._test_get_request(url_for('user.index'), redirect='/user/login?next=%2Fuser')
 
 
     def test_role(self):
