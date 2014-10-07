@@ -10,8 +10,12 @@ script:
   # Run tests
   - nosetests --with-coverage --cover-package koosli --cover-branches --cover-html
 
-  # Add code coverage to gh-pages
-  - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then ./tools/coverage_to_gh_pages.sh; fi
+  # Do build
+  - python setup.py sdist
+
+  # If we're on master and not a PR, thus a legitimate authenticated merge or push, deploy the
+  # code. Do deployment stuff in script block to fail build if something fails.
+  - if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then ./tools/deploy.sh; fi
 
 notifications:
   email: false
@@ -21,3 +25,6 @@ env:
 
     # GITHUB_TOKEN that grants access to thusoy's account. Used for deploying code coverage to gh-pages branch.
     - secure: "NbnTyOC6d9J3zm6E6ZjI9P3lSCXyfHtlv7r/h8r6K2gyKwOVItixaWhZG1cs9xqKOYJqMibfn8snpWFG1Lg/y0ujYrqoaQZjyQ1ybmVSK1/915/D9pWyJJQZ5NMvENPe1N6w59V/A4SxAYHgYRqM0GbioX87xNYfP2c1D9Vdpd8="
+
+    # SALT_SECRET, used to decrypt the prod secrets
+    - secure: "FmJHNlPjrKvRD6bU98z6NGxtMMMGpZ87oETFQTdtZv67wQdYR7v5O9r/uug6lPgsu3j5nyI1iXyG+n7qsLNFTMJn7orIUqketVAnyQeTJlKlLLGsQN91vbjwFC6ndV3dVbMnPpYa+qBzvtEp0TJjF5dJDOpT+4CqJoaQ2ZOg8Vo="
