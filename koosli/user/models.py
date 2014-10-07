@@ -70,7 +70,7 @@ class User(db.Model, UserMixin):
     # Admin or User, access string representation through role property
     role_code = Column(db.SmallInteger, default=USER, nullable=False)
 
-    _password = Column('password', db.String(STRING_LEN), nullable=False)
+    _password = Column('password', db.String(255), nullable=False)
 
     def _get_password(self):
         return self._password
