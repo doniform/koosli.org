@@ -14,7 +14,7 @@ from koosli import db
 mod = Blueprint('user', __name__, url_prefix='/user')
 
 
-@mod.route('/')
+@mod.route('')
 @login_required
 def index():
     '''The user dashboard where stats can be seen and preferences changed'''
