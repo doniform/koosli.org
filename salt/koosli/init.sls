@@ -58,7 +58,6 @@ koosli-static-dir:
 koosli-log-dir:
   file.directory:
     - name: /var/log/koosli
-    - makedirs: True
     - user: root
     - group: uwsgi
     - mode: 775
