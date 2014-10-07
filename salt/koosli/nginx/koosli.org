@@ -1,0 +1,80 @@
+{% set koosli = pillar.get('koosli', {}) -%}
+{% set bind_address = koosli.get('bind_address', 'koosli.org') -%}
+
+
+upstream koosli {
+  least_conn;
+  server unix:///tmp/koosli.socket;
+}
+
+
+server {
+    listen 80;
+    server_name {{ bind_address }};
+    charset utf-8;
+    return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+    listen 80;
+    server_name www.{{ bind_address }};
+    charset utf-8;
+    return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+    listen 80;
+    server_name beta.{{ bind_address }};
+    charset utf-8;
+    return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+  listen 443;
+  server_name www.{{ bind_address }};
+  charset utf-8;
+  ssl on;
+  ssl_certificate ssl/www.koosli.org.crt;
+  ssl_certificate_key private/www.koosli.org.key;
+  return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+  listen 443;
+  server_name {{ bind_address }};
+  charset utf-8;
+  ssl on;
+  ssl_certificate ssl/www.koosli.org.crt;
+  ssl_certificate_key private/www.koosli.org.key;
+  return 302 https://beta.{{ bind_address }}$request_uri;
+}
+
+server {
+  listen 443;
+  server_name beta.{{ bind_address }};
+  charset utf-8;
+  ssl on;
+  ssl_certificate ssl/www.koosli.org.crt;
+  ssl_certificate_key private/www.koosli.org.key;
+
+  location / {
+    uwsgi_pass koosli;
+    include uwsgi_params;
+    uwsgi_param Host $host;
+    uwsgi_param X-Real-IP $remote_addr;
+    uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
+    uwsgi_param X-Forwarded-Proto $http_x_forwarded_proto;
+
+    add_header Strict-Transport-Security max-age=31536000;
+    add_header X-Frame-Options DENY;
+
+    # Remove trailing slash if present
+    rewrite ^/(.*)/$ /$1 permanent;
+  }
+
+  location /static {
+    alias /srv/koosli.org/static/;
+    access_log off;
+    add_header Cache-Control "public";
+  }
+}
