@@ -8,5 +8,6 @@ base:
         - postgres.prod
 
     'vagrant':
+        - secure
         - koosli.vagrant
         - postgres.vagrant
