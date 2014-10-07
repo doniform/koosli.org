@@ -121,5 +121,6 @@ def _init_logging(app):
     '''Configure logging if a `LOG_CONF_PATH` is defined. '''
     log_config_dest = app.config.get('LOG_CONF_PATH')
     if log_config_dest:
+        print('Loading log config from %s' % log_config_dest)
         with open(log_config_dest) as log_config_file:
             logging.config.dictConfig(yaml.load(log_config_file))
