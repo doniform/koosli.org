@@ -243,19 +243,19 @@ NtRp71
 g18
 I1
 sg19
-I12
+I18
 sg20
-I52
+I57
 sg21
 I0
 sg22
-I1
+I4
 sg23
-I1
+I5
 sg24
-I1
+I4
 sbssg25
-S'\xc6\xae\t\x8a"\x10\xc6\xc8\xa5\xd2\xf5!\xe4\xee\xdb\xb4'
+S'\x00,W:rv\xe9\xc6 \xbd\x82\xe1\xc2\xc5\x10\xfa'
 p73
 ssS'koosli_user_forms'
 p74
@@ -277,9 +277,9 @@ NtRp79
 g18
 I1
 sg19
-I0
+I2
 sg20
-I13
+I15
 sg21
 I0
 sg22
@@ -289,7 +289,7 @@ I0
 sg24
 I0
 sbssg25
-S'\xe4?\x83WL\x93\x19_\xce\xb7\x05\x0f\x84\xb4\x00^'
+S'\x01B\xcc\x88g\xb5a\x1a\xd2\xf7\xddP\xc0q\xa4['
 p81
 ssS'koosli_views'
 p82
@@ -415,7 +415,7 @@ I1
 sg19
 I0
 sg20
-I21
+I25
 sg21
 I0
 sg22
@@ -425,7 +425,7 @@ I0
 sg24
 I0
 sbssg25
-S'v\xba\xfe\x17?\xb4u\xe4\xc9/W\xbfrS\xab\xe3'
+S'\x9c\xcc2\xba\xd5\xb9\xcfo\xbf\xdbHUC\xdf(\x80'
 p113
 ssS'koosli_search_providers_bing'
 p114
