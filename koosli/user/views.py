@@ -11,10 +11,10 @@ from .forms import RegistrationForm, PreferenceForm
 from koosli import db
 
 
-mod = Blueprint('user', __name__, url_prefix='/user')
+mod = Blueprint('user', __name__, url_prefix='')
 
 
-@mod.route('')
+@mod.route('/profile')
 @login_required
 def index():
     '''The user dashboard where stats can be seen and preferences changed'''
@@ -34,11 +34,11 @@ def login():
 
     if registered_user is None:
         flash('This email does not belong to a registered user' , 'error')
-        return redirect('/user/login')
+        return redirect(url_for('user.login'))
 
     if not registered_user.check_password(password):
         flash('Wrong password or username' , 'error')
-        return redirect('/user/login')
+        return redirect(url_for('user.login'))
 
     login_user(registered_user)
     return redirect(request.args.get('next') or '/user')
@@ -48,12 +48,15 @@ def login():
 def register():
     form = RegistrationForm(request.form)
 
-    if request.method == 'GET' or not form.validate():
+    if request.method == 'GET':
+        if APP.config['SPLASH_REGISTRATION']:
+            return render_template('splash.html', form=form)
         return render_template('user_register.html', form=form)
 
-    if User.email_taken(form.email.data):
-        flash('This email belongs to a registered user')
-        return render_template('user_register.html', form=form)
+    if not form.validate():
+        if APP.config['SPLASH_REGISTRATION']:
+            return render_template('splash.html', form=form), 400
+        return render_template('user_register.html', form=form), 400
 
     stats = UserStats()
     user = User(email=form.email.data, password=form.password.data, user_stats=stats)
@@ -61,7 +64,10 @@ def register():
     db.session.add(stats)
     db.session.commit()
     login_user(user)
-    flash('User successfully registered')
+
+    if APP.config['SPLASH_REGISTRATION']:
+        flash('Takk for interessen!', 'info')
+        return redirect('/')
     return redirect(url_for('user.index'))
 
 

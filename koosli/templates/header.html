@@ -1,6 +1,6 @@
 <div class="navbar" role="navigation">
     <ul class="nav navbar-nav pull-right">
-        <li><a href="/">
+        <li><a href="{{ url_for('search.search_main') }}">
             Home <span class="glyphicon glyphicon-home"></span>
         </a></li>
         {% if current_user.is_authenticated() %}

@@ -11,7 +11,7 @@ from koosli.tests import TestCase
 class UserTest(TestCase):
 
     def test_register(self):
-        self._test_get_request('/user/register', 'user_register.html')
+        self._test_get_request(url_for('user.register'), 'user_register.html')
 
         # Valid data
         data = {
@@ -21,7 +21,7 @@ class UserTest(TestCase):
             'accept_tos': True,
         }
 
-        response = self.client.post('/user/register', data=data, follow_redirects=True)
+        response = self.client.post(url_for('user.register'), data=data, follow_redirects=True)
         self.assert_200(response)
         new_user = User.query.filter_by(email=data['email']).first()
         self.assertIsNotNone(new_user)
@@ -31,8 +31,8 @@ class UserTest(TestCase):
         new_stats = UserStats.query.filter_by(id=new_user.user_stats_id).first()
         self.assertIsNotNone(new_stats)
 
-        response = self.client.post('/user/register', data=data, follow_redirects=True)
-        self.assertTrue('belongs to a registered user' in response.data)
+        response = self.client.post(url_for('user.register'), data=data, follow_redirects=True)
+        self.assertEqual(response.status_code, 400)
 
         # Invalid data
         data_invalid = {
@@ -43,7 +43,7 @@ class UserTest(TestCase):
         }
 
         response = self.client.post(url_for('user.register'), data=data_invalid, follow_redirects=True)
-        self.assert_200(response)
+        self.assertEqual(response.status_code, 400)
         invalid_user = User.query.filter_by(email=data_invalid['email']).first()
         self.assertIsNone(invalid_user)
 
@@ -54,14 +54,15 @@ class UserTest(TestCase):
             'email': 'demo@example.com',
             'password': '123456',
         }
-        response = self.client.post('/user/login', data=data, follow_redirects=True)
+        print url_for('user.login')
+        response = self.client.post(url_for('user.login'), data=data, follow_redirects=True)
 
         invalid_email = {
             'email': 'not_a_user',
             'password': '123456',
         }
         response = self.client.post(url_for('user.login'), data=invalid_email, follow_redirects=True)
-        self.assert_200(response)
+        print response.data
         self.assertTrue('This email does not belong to a registered user' in response.data)
 
         invalid_password = {
@@ -96,7 +97,7 @@ class UserTest(TestCase):
         current_app.login_manager.reload_user()
         response = self._test_get_request(url_for('user.index'), 'user_dash.html')
         self.logout()
-        self._test_get_request(url_for('user.index'), redirect='/user/login?next=%2Fuser')
+        self._test_get_request(url_for('user.index'), redirect=url_for('user.login')+'?next=%2Fprofile')
 
 
     def test_role(self):
@@ -133,7 +134,7 @@ class UserTest(TestCase):
             'ads': 'yahoo',
             'advertising_off': False
         }
-        response = self.client.post('/user/preference', data=data)
+        response = self.client.post(url_for('user.preference'), data=data)
         self.assert_200(response)
         stats = UserStats.query.filter_by(id=self.demo.user_stats_id).first()
         self.assertIsNotNone(stats)

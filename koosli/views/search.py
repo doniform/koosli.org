@@ -1,11 +1,17 @@
 from flask import Blueprint, current_app, render_template, request
+from koosli.user.forms import RegistrationForm
 import importlib
 
 mod = Blueprint('search', __name__)
 
-@mod.route('/')
+@mod.route('/beta')
 def search_main():
     return render_template('index.html')
+
+@mod.route('/')
+def splash():
+    form = RegistrationForm(request.form)
+    return render_template('splash.html', form=form)
 
 
 @mod.route('/about')
