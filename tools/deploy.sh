@@ -13,4 +13,4 @@ set -e
 python -c "import yaml; fh = open('pillar/secure/init.sls'); d = yaml.load(fh); print d['TRAVIS_SSH_PRIVATE_KEY']" > ~/.ssh/id_rsa
 
 # Run provisioning on server and deploy code and static assets to server
-fab provision deploy -H travis@koosli.org:21890
+fab provision deploy -H travis-ci@koosli.org:21890
