@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block wrapper %}
-<label class="attribution"><a href="http://commons.wikimedia.org/wiki/File%3ATrondheim_H%C3%B8st.jpg">Photo by GuoJunjun, via Wikimedia Commons</a></label>
+<label class="attribution">
+    Foto av <strong><a href="http://commons.wikimedia.org/wiki/File%3ATrondheim_H%C3%B8st.jpg">GuoJunjun</a></strong> / <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>
+</label>
 
 <div class="banner whitetron">
     <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
@@ -44,7 +46,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <p class="text-center">Interessert i å delta i betatesting?</p>
-                        <input id="email" style="width:70%; margin:0 auto" name="email" class="form-control" type="text" name="interest-email" placeholder="Email address">
+                        <input id="email" style="width:70%; margin:0 auto" name="email" class="form-control" type="text" name="interest-email" placeholder="E-postadresse">
                         <p class="text-center">
                             <input class="form-control" style="width:100px;display:inline; margin-top:5px" type="submit" value="Send">
                         </p>
