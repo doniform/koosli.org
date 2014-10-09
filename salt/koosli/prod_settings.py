@@ -16,3 +16,5 @@ BING_API_KEY = "{{ pillar['BING_API_KEY'] }}"
 LOG_CONF_PATH = '/srv/koosli.org/log_conf.yaml'
 
 SPLASH_REGISTRATION = True
+
+SESSION_COOKIE_SECURE = True
