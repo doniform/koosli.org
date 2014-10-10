@@ -1,7 +1,7 @@
 koosli.org [![Build Status](https://travis-ci.org/Koosli/koosli.org.svg?branch=master)](https://travis-ci.org/Koosli/koosli.org)
 ==========
 
-Autonomous search platform with good intentions.
+Search APIs and good intentions.
 
 
 Development
