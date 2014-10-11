@@ -1,7 +1,7 @@
-koosli.org [![Build Status](https://travis-ci.org/Koosli/koosli.org.svg?branch=master)](https://travis-ci.org/Koosli/koosli.org)
+koosli.org [![Build Status](https://magnum.travis-ci.com/doniancameron/koosli.org.svg?token=G8YsnbHqJoxBrxQ4zqnH&branch=master)](https://magnum.travis-ci.com/doniancameron/koosli.org)
 ==========
 
-Search APIs and good intentions.
+Search APIs, user autonomy, and good intentions.
 
 
 Development
