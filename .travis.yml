@@ -24,7 +24,7 @@ env:
   global:
 
     # GITHUB_TOKEN that grants access to thusoy's account. Used for deploying code coverage to gh-pages branch.
-    - secure: "NbnTyOC6d9J3zm6E6ZjI9P3lSCXyfHtlv7r/h8r6K2gyKwOVItixaWhZG1cs9xqKOYJqMibfn8snpWFG1Lg/y0ujYrqoaQZjyQ1ybmVSK1/915/D9pWyJJQZ5NMvENPe1N6w59V/A4SxAYHgYRqM0GbioX87xNYfP2c1D9Vdpd8="
+    - secure: "CdcGLkDFkq7nUzZIg1swN103jMqCB/4P8VVucL3sB0AFde3SOms+9G3vZJhfIRNVLc31AbhQjpe8HXjBRFdMjaYap7hdkMsLEq4SCcuB7PwVYZD0xEFU8/bWd+RIHEEqpG46wDmQmMYCMDuRPFoo3EhZh488XPKEGhtUMwF9pUo="
 
     # SALT_SECRET, used to decrypt the prod secrets
-    - secure: "FmJHNlPjrKvRD6bU98z6NGxtMMMGpZ87oETFQTdtZv67wQdYR7v5O9r/uug6lPgsu3j5nyI1iXyG+n7qsLNFTMJn7orIUqketVAnyQeTJlKlLLGsQN91vbjwFC6ndV3dVbMnPpYa+qBzvtEp0TJjF5dJDOpT+4CqJoaQ2ZOg8Vo="
+    - secure: "TwSkPCZLq960cpOh/v1WJNH3G+n991wMZK3oCcmK9JQjMqLYT3RN6f5XPfHol24IzrApwChZE6OnMYXwtZ7vdtcuy+sKptoM6Z94ASSQQ1Zf1L5qIySE6rglx+ubBJzH6s2SsKJc38hokwOxABl8vKnoDuKFkflWfj3R+qaxbP8="
