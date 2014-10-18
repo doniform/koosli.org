@@ -8,6 +8,7 @@ SECRET_KEY = 'not a secret'
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+SPLASH_REGISTRATION = True
 
 #=========================================
 # Database Config
