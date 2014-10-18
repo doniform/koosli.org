@@ -22,7 +22,7 @@ class UserTest(TestCase):
         }
 
         response = self.client.post(url_for('user.register'), data=data, follow_redirects=True)
-        self.assert_200(response)
+        self.assert200(response)
         new_user = User.query.filter_by(email=data['email']).first()
         self.assertIsNotNone(new_user)
         self.assertTrue(new_user.is_authenticated())
@@ -32,7 +32,7 @@ class UserTest(TestCase):
         self.assertIsNotNone(new_stats)
 
         response = self.client.post(url_for('user.register'), data=data, follow_redirects=True)
-        self.assertEqual(response.status_code, 400)
+        self.assert400(response)
 
         # Invalid data
         data_invalid = {
@@ -43,7 +43,7 @@ class UserTest(TestCase):
         }
 
         response = self.client.post(url_for('user.register'), data=data_invalid, follow_redirects=True)
-        self.assertEqual(response.status_code, 400)
+        self.assert400(response)
         invalid_user = User.query.filter_by(email=data_invalid['email']).first()
         self.assertIsNone(invalid_user)
 
@@ -56,7 +56,7 @@ class UserTest(TestCase):
         }
         print url_for('user.login')
         response = self.client.post(url_for('user.login'), data=data, follow_redirects=True)
-        self.assert_200(response)
+        self.assert200(response)
 
         invalid_email = {
             'email': 'not_a_user',
@@ -71,19 +71,19 @@ class UserTest(TestCase):
             'password': 'wrongpassword',
         }
         response = self.client.post(url_for('user.login'), data=invalid_password, follow_redirects=True)
-        self.assert_200(response)
+        self.assert401(response)
         self.assertTrue('Wrong password or username' in response.data)
 
 
     def test_logout(self):
         self.login(self.demo.email)
         response = self.client.get(url_for('user.logout'), follow_redirects=True)
-        self.assert_200(response)
+        self.assert200(response)
 
     # [TODO] NOT IMPLEMENTED YET
     # def test_reset_password(self):
     #     response = self.client.get('/user/reset_password')
-    #     self.assert_200(response)
+    #     self.assert200(response)
 
     #     data = {
     #         'email': 'demo@example.com',
@@ -136,7 +136,7 @@ class UserTest(TestCase):
             'advertising_off': False
         }
         response = self.client.post(url_for('user.preference'), data=data)
-        self.assert_200(response)
+        self.assert200(response)
         stats = UserStats.query.filter_by(id=self.demo.user_stats_id).first()
         self.assertIsNotNone(stats)
         self.assertEqual(stats.beneficiary, data['beneficiary'])

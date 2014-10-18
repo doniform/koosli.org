@@ -20,4 +20,4 @@ class DecoratorTest(TestCase):
 
         self.login(self.admin.email)
         response = self.client.get('/admin/')
-        self.assert_200(response)
+        self.assert200(response)

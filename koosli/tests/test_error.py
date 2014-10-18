@@ -13,6 +13,7 @@ class ErrorTest(TestCase):
     def test_403(self):
         self.login(self.demo.email)
         response = self.client.get('/admin/')
+        self.assert403(response)
         self.assertTemplateUsed('errors/forbidden.html')
 
     # [TODO] How to test for this?

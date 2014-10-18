@@ -23,8 +23,5 @@ SEARCH_PROVIDERS = {
 # Database Config
 #=========================================
 
-# Flask-Sqlalchemy: http://packages.python.org/Flask-SQLAlchemy/config.html
-SQLALCHEMY_ECHO = True
-
 # In-memory SQLite for quick test runs
 SQLALCHEMY_DATABASE_URI = 'sqlite://'

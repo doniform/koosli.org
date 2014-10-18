@@ -76,7 +76,7 @@ class TestCase(Base):
         if redirect is not None:
             self.assertRedirects(response, location=redirect)
         else:
-            self.assert_200(response)
+            self.assert200(response)
         if template:
             self.assertTemplateUsed(name=template)
         return response

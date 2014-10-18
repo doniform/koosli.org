@@ -34,11 +34,11 @@ def login():
 
     if registered_user is None:
         flash('This email does not belong to a registered user' , 'error')
-        return redirect(url_for('user.login'))
+        return render_template('user_login.html'), 400
 
     if not registered_user.check_password(password):
         flash('Wrong password or username' , 'error')
-        return redirect(url_for('user.login'))
+        return render_template('user_login.html'), 401
 
     login_user(registered_user)
     return redirect(request.args.get('next') or '/profile')
