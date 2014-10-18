@@ -39,8 +39,11 @@ def get_search_provider():
 @mod.route('/search')
 def do_search():
     provider = get_search_provider()
-    query = request.args.get('q')
-    results = provider.search(query).get('d', {}).get('results', [])
+    query = request.args.get('q', '').strip()
+    if query:
+        results = provider.search(query).get('d', {}).get('results', [])
+    else:
+        results = []
     return render_template('search_results.html', results=results, query=query)
 
 
