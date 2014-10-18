@@ -8,14 +8,15 @@ html, body {
     font-family: sans-serif;
 }
 body {
-    /* http://www.hdwallpapers.in/norway_fjord-wallpapers.html */
+    position:relative;
+}
+.trondheim {
+     /* http://www.hdwallpapers.in/norway_fjord-wallpapers.html */
     /*background-image: url(../img/fjord.jpg);*/
-
     background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trondheim_H%C3%B8st.jpg/1280px-Trondheim_H%C3%B8st.jpg);
     background-repeat:no-repeat;
     background-position: center center;
     background-size: cover;
-    position:relative;
 }
 #wrapper {
     min-height:100%;

@@ -41,7 +41,7 @@ def login():
         return redirect(url_for('user.login'))
 
     login_user(registered_user)
-    return redirect(request.args.get('next') or '/user')
+    return redirect(request.args.get('next') or '/profile')
 
 
 @mod.route('/register' , methods=['GET','POST'])
@@ -49,12 +49,12 @@ def register():
     form = RegistrationForm(request.form)
 
     if request.method == 'GET':
-        if APP.config['SPLASH_REGISTRATION']:
+        if APP.config.get('SPLASH_REGISTRATION'):
             return render_template('splash.html', form=form)
         return render_template('user_register.html', form=form)
 
     if not form.validate():
-        if APP.config['SPLASH_REGISTRATION']:
+        if APP.config.get('SPLASH_REGISTRATION'):
             return render_template('splash.html', form=form), 400
         return render_template('user_register.html', form=form), 400
 
@@ -65,7 +65,7 @@ def register():
     db.session.commit()
     login_user(user)
 
-    if APP.config['SPLASH_REGISTRATION']:
+    if APP.config.get('SPLASH_REGISTRATION'):
         flash('Takk for interessen!', 'info')
         return redirect('/')
     return redirect(url_for('user.index'))

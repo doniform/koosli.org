@@ -1,59 +1,61 @@
 {% extends 'base.html' %}
 
-{% block wrapper %}
-<label class="attribution">
-    Foto av <strong><a href="http://commons.wikimedia.org/wiki/File%3ATrondheim_H%C3%B8st.jpg">GuoJunjun</a></strong> / <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>
-</label>
+{% block html %}
+<body class="trondheim">
+    <label class="attribution">
+        Foto av <strong><a href="http://commons.wikimedia.org/wiki/File%3ATrondheim_H%C3%B8st.jpg">GuoJunjun</a></strong> / <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>
+    </label>
 
-<div class="banner whitetron">
-    <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
-    <h4 class="max-width text-center">
-        Web den norske måten:<br>
-        Om mennesker, personvern og valg.<br>
-        Kommer i 2015!
-    </h4>
+    <div class="banner whitetron">
+        <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
+        <h4 class="max-width text-center">
+            Web den norske måten:<br>
+            Om mennesker, personvern og valg.<br>
+            Kommer i 2015!
+        </h4>
 
-    <div class="row" style="margin-top:50px">
-        {% if message %}
-        {% endif %}
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    {% if category == 'error' %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
-                    {% else %}
-                    <div class="alert alert-info" role="alert">
-                        {{ message }}
-                    </div>
-                    {% endif %}
-                {% endfor %}
+        <div class="row" style="margin-top:50px">
+            {% if message %}
             {% endif %}
-        {% endwith %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if category == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-info" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
-        {% if form %}
-            {% if form.errors %}
-            <div class="alert alert-danger">
-            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-                {% for error in field_errors %}
-                    <div>{{ error }}</div>
+            {% if form %}
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-            </div>
-            {% endif %}
-            <form class="col-xs-12" id="interest-form" action="/register" method="POST">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p class="text-center">Interessert i å delta i betatesting?</p>
-                        <input id="email" style="width:70%; margin:0 auto" name="email" class="form-control" type="text" name="interest-email" placeholder="E-postadresse">
-                        <p class="text-center">
-                            <input class="form-control" style="width:100px;display:inline; margin-top:5px" type="submit" value="Send">
-                        </p>
-                    </div>
                 </div>
-            </form>
-        {% endif %}
+                {% endif %}
+                <form class="col-xs-12" id="interest-form" action="/register" method="POST">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p class="text-center">Interessert i å delta i betatesting?</p>
+                            <input id="email" style="width:70%; margin:0 auto" name="email" class="form-control" type="text" name="interest-email" placeholder="E-postadresse">
+                            <p class="text-center">
+                                <input class="form-control" style="width:100px;display:inline; margin-top:5px" type="submit" value="Send">
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
     </div>
-</div>
+</body>
 {% endblock %}

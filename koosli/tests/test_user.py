@@ -56,6 +56,7 @@ class UserTest(TestCase):
         }
         print url_for('user.login')
         response = self.client.post(url_for('user.login'), data=data, follow_redirects=True)
+        self.assert_200(response)
 
         invalid_email = {
             'email': 'not_a_user',

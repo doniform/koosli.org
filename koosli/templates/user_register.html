@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-{{ form.errors }}
+
+{% if form.errors %}
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
 <form action="{{ url_for('user.register') }}" method="POST" class="form-horizontal col-xs-6 col-xs-offset-3">
     <h1 class="text-center">Sign up for Koosli </h1>
     <br>
