@@ -1,0 +1,95 @@
+{
+  "bossresponse": {
+    "web": {
+      "count": "50",
+      "start": "0",
+      "totalresults": "14800000",
+      "results": [
+        {
+          "dispurl": "www.puppyfind.com",
+          "title": "PuppyFind.com - <b>Puppies</b> for Sale, Dogs for Sale and Dog Breeders",
+          "url": "http://www.puppyfind.com/",
+          "abstract": "Directory of dog breeders with <b>puppies</b> for sale and dogs for adoption. Find the right breed, and the perfect puppy at PuppyFind.com.",
+          "clickurl": "http://www.puppyfind.com/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.dailypuppy.com",
+          "title": "The Daily Puppy - <b>Puppies</b>, Cute Puppy Names, Pictures of ...",
+          "url": "http://www.dailypuppy.com/",
+          "abstract": "Find cute puppy pictures and videos. Learn how to care for and train <b>puppies</b>. Submit your puppy to be the daily puppy, create profiles for you and your dogs and share ...",
+          "clickurl": "http://www.dailypuppy.com/",
+          "date": ""
+        },
+        {
+          "dispurl": "just<b>puppies</b>.net",
+          "title": "JustPuppies.net - Better <b>Puppies</b>, Better Prices, Better Hurry",
+          "url": "http://justpuppies.net/",
+          "abstract": "Just <b>Puppies</b> Orlando, Central Florida, Pet Store has <b>Puppies</b> for sale, Orlando Puppy Store offers handpicked Pups from Select Breeders. Osceola, Seminole, and Orange ...",
+          "clickurl": "http://justpuppies.net/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.<b>puppies</b>tampa.com",
+          "title": "<b>Puppies</b> Tampa - <b>Puppies</b> For Sale, Adopt A Puppy, <b>Puppies</b> For ...",
+          "url": "http://www.puppiestampa.com/",
+          "abstract": "<b>Puppies</b> Tampa <b>puppies</b> for sale. We offer over 50 different breeds to play with and choose from. 2 miles North of Raymond James stadium on Dale Mabry. 813-374-8970.",
+          "clickurl": "http://www.puppiestampa.com/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.buckeye<b>puppies</b>.com",
+          "title": "BuckEyePuppies.com - <b>Puppies</b> for Sale in Ohio | Buckeye <b>Puppies</b>",
+          "url": "http://www.buckeyepuppies.com/",
+          "abstract": "Find a puppy to adopt! Lancaster <b>Puppies</b> makes it easy to find homes for <b>puppies</b> from reputable dog breeders in PA and more.",
+          "clickurl": "http://www.buckeyepuppies.com/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.nextdaypets.com/directory/dogs/sale",
+          "title": "<b>Puppies</b> &amp; Dogs for Sale from Dog Breeders",
+          "url": "http://www.nextdaypets.com/directory/dogs/sale/",
+          "abstract": "AKC <b>puppies</b> for sale and dogs for adoption from local breeders. Find your perfect new companion at NextDayPets.com.",
+          "clickurl": "http://www.nextdaypets.com/directory/dogs/sale/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.lancaster<b>puppies</b>.com",
+          "title": "LancasterPuppies.com - <b>Puppies</b> for Sale in PA | Lancaster ...",
+          "url": "http://www.lancasterpuppies.com/",
+          "abstract": "Find a puppy to adopt! Lancaster <b>Puppies</b> makes it easy to find homes for <b>puppies</b> from reputable dog breeders in PA and more.",
+          "clickurl": "http://www.lancasterpuppies.com/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.ebayclassifieds.com/<b>Puppies</b>",
+          "title": "<b>puppies</b> | <b>puppies</b> on eBay Classifieds",
+          "url": "http://www.ebayclassifieds.com/Puppies",
+          "abstract": "Find ads for <b>puppies</b> on eBay Classifieds (Kijiji). eBay Classifieds is your fast, free and friendly local classifieds site.",
+          "clickurl": "http://www.ebayclassifieds.com/Puppies",
+          "date": ""
+        },
+        {
+          "dispurl": "www.terrificpets.com/dogs_for_sale",
+          "title": "Dogs for Sale, <b>Puppies</b> for Sale - Terrific Pets",
+          "url": "http://www.terrificpets.com/dogs_for_sale/",
+          "abstract": "Dogs For Sale, <b>Puppies</b> for Sale Please use the below search box, and browse through our featured Dogs For Sale, <b>Puppies</b> for Sale listings.",
+          "clickurl": "http://www.terrificpets.com/dogs_for_sale/",
+          "date": ""
+        },
+        {
+          "dispurl": "www.puppydogweb.com/<b>puppies</b>.htm",
+          "title": "<b>Puppies</b> For Sale, Puppy - Puppy Dog Web",
+          "url": "http://www.puppydogweb.com/puppies.htm",
+          "abstract": "Find <b>puppies</b> for sale by dog breeders in for <b>puppies</b>, adults, new litters, show, or pet quality <b>puppies</b> for sale in your area",
+          "clickurl": "http://www.puppydogweb.com/puppies.htm",
+          "date": ""
+        }
+     ]
+    },
+    "ads": {
+        "dmtoken": "dummy_ads_token_with?&%unsafe-html-entities"
+    },
+    "responsecode": "200"
+  }
+}

@@ -32,7 +32,7 @@ def advertisers():
 
 
 def get_search_provider():
-    klass = current_app.config['SEARCH_PROVIDERS']['bing']
+    klass = current_app.config['SEARCH_PROVIDERS']['yahoo']
     return klass()
 
 

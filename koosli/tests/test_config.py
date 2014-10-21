@@ -1,6 +1,6 @@
 import os
 
-from koosli.search_providers import bing
+from koosli.search_providers import bing, yahoo
 
 DEBUG = True
 
@@ -12,11 +12,9 @@ SPLASH_REGISTRATION = False
 # Search Providers
 #=========================================
 
-#BING_API_KEY = '' # Fill in to use live bing search
-
 SEARCH_PROVIDERS = {
     'bing': bing.BingMock,
-    #'bing': bing.Bing,
+    'yahoo': yahoo.YahooMock,
 }
 
 #=========================================

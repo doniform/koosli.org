@@ -19,3 +19,5 @@ SQLALCHEMY_ECHO = True
 
 # SQLITE for prototyping.
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/kooslidb.db'
+
+YAHOO_CONSUMER_SECRET = '' # fill in to use yahoo boss search
