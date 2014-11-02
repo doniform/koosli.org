@@ -1,6 +1,6 @@
 import os
 
-from koosli.search_providers import bing
+from koosli.search_providers import bing, yahoo
 
 DEBUG = True
 
@@ -17,7 +17,14 @@ SPLASH_REGISTRATION = True
 # Flask-Sqlalchemy: http://packages.python.org/Flask-SQLAlchemy/config.html
 SQLALCHEMY_ECHO = True
 
+SEARCH_PROVIDERS = {
+    'yahoo': yahoo.YahooMock,
+    'bing': bing.BingMock,
+}
+
 # SQLITE for prototyping.
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/kooslidb.db'
 
 YAHOO_CONSUMER_SECRET = '' # fill in to use yahoo boss search
+
+BING_API_KEY = '' # Fill in to use live bing search
