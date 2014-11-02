@@ -7,7 +7,21 @@ from requests_oauthlib import OAuth1
 import requests
 
 
-class YahooMock(object):
+class _YahooBase(object):
+
+    def kapify_response(self, yahoo_response):
+        response = []
+        for result in yahoo_response.get('bossresponse', {}).get('web', {}).get('results', []):
+            response.append({
+                'title': result['title'],
+                'displayUrl': result['dispurl'],
+                'description': result['abstract'],
+                'url': result['url'],
+            })
+        return response
+
+
+class YahooMock(_YahooBase):
 
     def search(self, query):
         with open(os.path.join(os.path.dirname(__file__), 'mock-responses', 'search.json')) as f:
@@ -16,7 +30,8 @@ class YahooMock(object):
         return self.kapify_response(results)
 
 
-class Yahoo(object):
+class Yahoo(_YahooBase):
+
     api_root = 'https://yboss.yahooapis.com/ysearch/web'
 
     def search(self, query):
@@ -29,7 +44,8 @@ class Yahoo(object):
         params = {
             'format': 'json',
             'q': "'%s'" % query,
+            'count': 10,
         }
         response = requests.get(self.api_root, params=params, auth=oauth)
         response.raise_for_status()
-        return response.json()
+        return self.kapify_response(response.json())

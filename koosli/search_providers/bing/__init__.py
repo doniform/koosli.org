@@ -6,17 +6,30 @@ import random
 from flask import current_app
 import requests
 
+class _BingBase(object):
 
-class BingMock(object):
+    def kapify_response(self, bing_response):
+        response = []
+        for result in bing_response.get('d', {}).get('results', []):
+            response.append({
+                'displayUrl': result['DisplayUrl'],
+                'description': result['Description'],
+                'url': result['Url'],
+                'title': result['Title'],
+            })
+        return response
+
+
+class BingMock(_BingBase):
 
     def search(self, query):
         with open(os.path.join(os.path.dirname(__file__), 'mock-responses', 'search.json')) as f:
             results = json.load(f)
             random.shuffle(results['d']['results'])
-            return results
+            return self.kapify_response(results)
 
 
-class Bing(object):
+class Bing(_BingBase):
     api_root = 'https://api.datamarket.azure.com/Bing/Search/Web'
 
     def search(self, query):
@@ -29,4 +42,4 @@ class Bing(object):
             'Authorization': 'Basic %s' % (base64.b64encode('{0}:{0}'.format(account_key))),
         }
         response = requests.get(self.api_root, params=params, headers=headers)
-        return response.json()
+        return self.kapify_response(response.json())

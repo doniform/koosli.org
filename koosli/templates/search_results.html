@@ -32,10 +32,10 @@
         <div class="col-sm-10">
             {% for result in results %}
                 <div>
-                    <h2><a href="{{ result.Url }}">{{ result.Title }}</a></h2>
-                    <a href="{{ result.Url }}">{{ result.DisplayUrl }}</a>
+                    <h2><a href="{{ result.url }}">{{ result.title|safe }}</a></h2>
+                    <a href="{{ result.url }}">{{ result.displayUrl }}</a>
                     <p>
-                        {{ result.Description }}
+                        {{ result.description }}
                     </p>
                 </div>
             {% endfor %}
@@ -44,14 +44,9 @@
 
             {# "results": [
             {
-                "Description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
-                "DisplayUrl": "en.wikipedia.org/wiki/Bunny",
-                "ID": "a35cc7de-72f0-45e9-8139-bdc13ee82d74",
-                "Title": "Rabbit - Wikipedia, the free encyclopedia",
-                "Url": "http://en.wikipedia.org/wiki/Bunny",
-                "__metadata": {
-                    "type": "WebResult",
-                    "uri": "https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='bunny'&$skip=0&$top=1"
-                }
+                "description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
+                "displayUrl": "en.wikipedia.org/wiki/Bunny",
+                "title": "Rabbit - Wikipedia, the free encyclopedia",
+                "url": "http://en.wikipedia.org/wiki/Bunny"
             } #}
 {% endblock %}

@@ -41,9 +41,7 @@ def do_search():
     provider = get_search_provider()
     query = request.args.get('q', '').strip()
     if query:
-        results = provider.search(query).get('d', {}).get('results', [])
+        results = provider.search(query)
     else:
         results = []
     return render_template('search_results.html', results=results, query=query)
-
-
