@@ -12,7 +12,7 @@ class _YahooBase(object):
     def kapify_response(self, yahoo_response):
         response = {
             'results': [],
-            'adToken': yahoo_response.get('ads', {}).get('dmtoken')
+            'ads_token': yahoo_response['bossresponse'].get('ads', {}).get('dmtoken')
         }
         for result in yahoo_response.get('bossresponse', {}).get('web', {}).get('results', []):
             response['results'].append({

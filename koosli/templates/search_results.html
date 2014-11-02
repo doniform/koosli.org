@@ -29,6 +29,8 @@
             </ul>
         </div>
 
+        <div id="ads"></div>
+
         <div class="col-sm-10">
             {% for result in results %}
                 <div>
@@ -42,8 +44,53 @@
         </div>
     </div>
 
+    <script src="https://s.yimg.com/rv/boss_v2/js/yjs.js"></script>
     <script>
-        var ADS_TOKEN = "{{ ads_token }}";
+        function fire_ads(token) {
+            post_search_display(); /* implemented in yjs, HAS TO BE INVOKED */
+            var callback_function = "render_ads";
+
+            /* make call to fetch ads providing token as a parameter */
+            /* fetch_ads is implemented in yjs, HAS TO BE INVOKED  */
+            fetch_ads(callback_function, token, "");
+        }
+
+        /* Callback function for ads JSON */
+        function render_ads(result_json) {
+
+            if (result_json.bossresponse.responsecode != 200) {
+                return false;
+            }
+            if (result_json.bossresponse.ads.resultset.numResults == null || result_json.bossresponse.ads.resultset.numResults == 0) {
+                return false;
+            }
+
+            // See rules for using BOSS Search Ads https://developer.yahoo.com/search/boss/boss_api_guide/important_adsrules.html
+            var innerHTML = "<div style=\"background-color:#FBEFF5\">";
+            innerHTML += "<p><a href='https://help.yahoo.com/l/us/yahoo/search/basics/basics-03.html'><b>Sponsored Ads</b> <img src='http://l.yimg.com/a/i/us/sch/boss2/createdwith1.png'></a></p>";
+
+            for(i=0;i<result_json.bossresponse.ads.resultset.numResults;i++) {
+                var item = result_json.bossresponse.ads.resultset.listing[i];
+                title = item.title;
+                description = item.description;
+                siteHost = item.siteHost;
+                clickurl = item.clickurl;
+                innerHTML += "<ul>";
+                innerHTML += "<li><a href='"+clickurl+"'>"+title+"</a></li>";
+                innerHTML += "<li>"+description+"</li>";
+                innerHTML += "<li>"+siteHost+"</li>";
+                innerHTML += "</ul>";
+            }
+
+            innerHTML += "</div>";
+
+            var adsSection = document.getElementById('ads');
+            adsSection.innerHTML = innerHTML;
+        }
+    </script>
+    <script>
+        var ADS_TOKEN = "{{ ads_token|safe }}";
+        fire_ads(ADS_TOKEN);
     </script>
 
             {# "results": [
