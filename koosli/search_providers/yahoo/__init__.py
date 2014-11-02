@@ -10,9 +10,12 @@ import requests
 class _YahooBase(object):
 
     def kapify_response(self, yahoo_response):
-        response = []
+        response = {
+            'results': [],
+            'adToken': yahoo_response.get('ads', {}).get('dmtoken')
+        }
         for result in yahoo_response.get('bossresponse', {}).get('web', {}).get('results', []):
-            response.append({
+            response['results'].append({
                 'title': result['title'],
                 'displayUrl': result['dispurl'],
                 'description': result['abstract'],
@@ -32,7 +35,7 @@ class YahooMock(_YahooBase):
 
 class Yahoo(_YahooBase):
 
-    api_root = 'https://yboss.yahooapis.com/ysearch/web'
+    api_root = 'https://yboss.yahooapis.com/ysearch/web,ads'
 
     def search(self, query):
         client_key = current_app.config['YAHOO_CONSUMER_KEY']
@@ -45,6 +48,8 @@ class Yahoo(_YahooBase):
             'format': 'json',
             'q': "'%s'" % query,
             'count': 10,
+            'ads.Partner': 'domaindev_syn_boss157_ss_search',
+            'ads.Type': 'ddc_koosli_org',
         }
         response = requests.get(self.api_root, params=params, auth=oauth)
         response.raise_for_status()

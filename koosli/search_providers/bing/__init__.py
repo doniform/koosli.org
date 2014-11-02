@@ -9,9 +9,11 @@ import requests
 class _BingBase(object):
 
     def kapify_response(self, bing_response):
-        response = []
+        response = {
+            'results': []
+        }
         for result in bing_response.get('d', {}).get('results', []):
-            response.append({
+            response['results'].append({
                 'displayUrl': result['DisplayUrl'],
                 'description': result['Description'],
                 'url': result['Url'],
