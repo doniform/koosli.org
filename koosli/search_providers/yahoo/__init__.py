@@ -2,7 +2,7 @@ import json
 import random
 import os
 
-from flask import current_app
+from flask import current_app, Markup
 from requests_oauthlib import OAuth1
 import requests
 
@@ -10,15 +10,18 @@ import requests
 class _YahooBase(object):
 
     def kapify_response(self, yahoo_response):
+        ads_token = yahoo_response['bossresponse'].get('ads', {}).get('dmtoken')
         response = {
+            'ads_token': Markup(ads_token),
             'results': [],
-            'ads_token': yahoo_response['bossresponse'].get('ads', {}).get('dmtoken')
         }
         for result in yahoo_response.get('bossresponse', {}).get('web', {}).get('results', []):
+            # Wrapping the data in Markup() ensures they're not escaped in the template rendering.
+            # We trust results from Yahoo.
             response['results'].append({
-                'title': result['title'],
-                'displayUrl': result['dispurl'],
-                'description': result['abstract'],
+                'title': Markup(result['title']),
+                'displayUrl': Markup(result['dispurl']),
+                'description': Markup(result['abstract']),
                 'url': result['url'],
             })
         return response
