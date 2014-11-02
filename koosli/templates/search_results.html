@@ -29,29 +29,75 @@
             </ul>
         </div>
 
+        <div id="ads"></div>
+
         <div class="col-sm-10">
             {% for result in results %}
                 <div>
-                    <h2><a href="{{ result.Url }}">{{ result.Title }}</a></h2>
-                    <a href="{{ result.Url }}">{{ result.DisplayUrl }}</a>
+                    <h2><a href="{{ result.url }}">{{ result.title|safe }}</a></h2>
+                    <a href="{{ result.url }}">{{ result.displayUrl }}</a>
                     <p>
-                        {{ result.Description }}
+                        {{ result.description }}
                     </p>
                 </div>
             {% endfor %}
         </div>
     </div>
 
+    <script src="https://s.yimg.com/rv/boss_v2/js/yjs.js"></script>
+    <script>
+        function fire_ads(token) {
+            post_search_display(); /* implemented in yjs, HAS TO BE INVOKED */
+            var callback_function = "render_ads";
+
+            /* make call to fetch ads providing token as a parameter */
+            /* fetch_ads is implemented in yjs, HAS TO BE INVOKED  */
+            fetch_ads(callback_function, token, "");
+        }
+
+        /* Callback function for ads JSON */
+        function render_ads(result_json) {
+
+            if (result_json.bossresponse.responsecode != 200) {
+                return false;
+            }
+            if (result_json.bossresponse.ads.resultset.numResults == null || result_json.bossresponse.ads.resultset.numResults == 0) {
+                return false;
+            }
+
+            // See rules for using BOSS Search Ads https://developer.yahoo.com/search/boss/boss_api_guide/important_adsrules.html
+            var innerHTML = "<div style=\"background-color:#FBEFF5\">";
+            innerHTML += "<p><a href='https://help.yahoo.com/l/us/yahoo/search/basics/basics-03.html'><b>Sponsored Ads</b> <img src='{{ url_for('static', filename='img/created-with-yahoo-boss.png') }}'></a></p>";
+
+            for(i=0;i<result_json.bossresponse.ads.resultset.numResults;i++) {
+                var item = result_json.bossresponse.ads.resultset.listing[i];
+                title = item.title;
+                description = item.description;
+                siteHost = item.siteHost;
+                clickurl = item.clickurl;
+                innerHTML += "<ul>";
+                innerHTML += "<li><a href='"+clickurl+"'>"+title+"</a></li>";
+                innerHTML += "<li>"+description+"</li>";
+                innerHTML += "<li>"+siteHost+"</li>";
+                innerHTML += "</ul>";
+            }
+
+            innerHTML += "</div>";
+
+            var adsSection = document.getElementById('ads');
+            adsSection.innerHTML = innerHTML;
+        }
+    </script>
+    <script>
+        var ADS_TOKEN = "{{ ads_token }}";
+        fire_ads(ADS_TOKEN);
+    </script>
+
             {# "results": [
             {
-                "Description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
-                "DisplayUrl": "en.wikipedia.org/wiki/Bunny",
-                "ID": "a35cc7de-72f0-45e9-8139-bdc13ee82d74",
-                "Title": "Rabbit - Wikipedia, the free encyclopedia",
-                "Url": "http://en.wikipedia.org/wiki/Bunny",
-                "__metadata": {
-                    "type": "WebResult",
-                    "uri": "https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='bunny'&$skip=0&$top=1"
-                }
+                "description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
+                "displayUrl": "en.wikipedia.org/wiki/Bunny",
+                "title": "Rabbit - Wikipedia, the free encyclopedia",
+                "url": "http://en.wikipedia.org/wiki/Bunny"
             } #}
 {% endblock %}

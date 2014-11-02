@@ -32,7 +32,7 @@ def advertisers():
 
 
 def get_search_provider():
-    klass = current_app.config['SEARCH_PROVIDERS']['bing']
+    klass = current_app.config['SEARCH_PROVIDERS']['yahoo']
     return klass()
 
 
@@ -41,9 +41,15 @@ def do_search():
     provider = get_search_provider()
     query = request.args.get('q', '').strip()
     if query:
-        results = provider.search(query).get('d', {}).get('results', [])
+        api_response = provider.search(query)
     else:
-        results = []
-    return render_template('search_results.html', results=results, query=query)
-
-
+        api_response = {
+            'results': [],
+            'ads_token': '',
+        }
+    context = {
+        'results': api_response['results'],
+        'query': query,
+        'ads_token': api_response['ads_token'],
+    }
+    return render_template('search_results.html', **context)
