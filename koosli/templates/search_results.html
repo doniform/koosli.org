@@ -67,7 +67,7 @@
 
             // See rules for using BOSS Search Ads https://developer.yahoo.com/search/boss/boss_api_guide/important_adsrules.html
             var innerHTML = "<div style=\"background-color:#FBEFF5\">";
-            innerHTML += "<p><a href='https://help.yahoo.com/l/us/yahoo/search/basics/basics-03.html'><b>Sponsored Ads</b> <img src='http://l.yimg.com/a/i/us/sch/boss2/createdwith1.png'></a></p>";
+            innerHTML += "<p><a href='https://help.yahoo.com/l/us/yahoo/search/basics/basics-03.html'><b>Sponsored Ads</b> <img src='{{ url_for('static', filename='img/created-with-yahoo-boss.png') }}'></a></p>";
 
             for(i=0;i<result_json.bossresponse.ads.resultset.numResults;i++) {
                 var item = result_json.bossresponse.ads.resultset.listing[i];
