@@ -4,6 +4,7 @@ import os
 
 from flask import current_app, Markup
 from requests_oauthlib import OAuth1
+from urllib import quote_plus
 import requests
 
 
@@ -49,7 +50,9 @@ class Yahoo(_YahooBase):
         )
         params = {
             'format': 'json',
-            'q': "'%s'" % query,
+            # For some reason BOSS auth fails for multi-word searches if we don't escape the values
+            # ourselves due to invalid signatures. If you want to dig to figure out why, go ahead.
+            'q': quote_plus(query),
             'count': 10,
             'ads.Partner': 'domaindev_syn_boss157_ss_search',
             'ads.Type': 'ddc_koosli_org',
