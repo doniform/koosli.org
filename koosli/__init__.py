@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from logging import getLogger
+import logging.config
 import os
 import textwrap
 import yaml
@@ -13,9 +14,10 @@ _logger = getLogger(__name__)
 def create_app(config_file=None):
     app = Flask('koosli')
 
+    configure_application(app, config_file=config_file)
+
     _init_logging(app)
 
-    configure_application(app, config_file=config_file)
     configure_blueprints(app)
     configure_extensions(app)
     configure_error_handlers(app)
@@ -119,6 +121,11 @@ def configure_extensions(app):
 
 def _init_logging(app):
     '''Configure logging if a `LOG_CONF_PATH` is defined. '''
+
+    # Disable flask logger handling, https://github.com/mitsuhiko/flask/issues/641
+    app.logger_name = 'nowhere'
+    app.logger
+
     log_config_dest = app.config.get('LOG_CONF_PATH')
     if log_config_dest:
         print('Loading log config from %s' % log_config_dest)
