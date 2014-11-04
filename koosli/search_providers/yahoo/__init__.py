@@ -10,6 +10,8 @@ import requests
 
 class _YahooBase(object):
 
+    human_readable = 'Yahoo!'
+
     def kapify_response(self, yahoo_response):
         ads_token = yahoo_response['bossresponse'].get('ads', {}).get('dmtoken')
         response = {

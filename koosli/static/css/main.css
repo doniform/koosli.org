@@ -131,3 +131,9 @@ img {
     -webkit-text-shadow: 1px 1px 2px black;
     color: #ddd;
 }
+
+
+.img-centered {
+    margin: auto auto;
+    display: block;
+}

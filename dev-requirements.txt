@@ -3,6 +3,7 @@
 # Stuff only needed in dev:
 nose
 coverage
+mock
 
 Flask-Testing==0.4.2
 blinker==1.3

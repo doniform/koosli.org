@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h1>Epic failure</h1>
+
+    <p>
+        We're terribly sorry, but somethings gone awry while talking to our search providers. We're
+        looking into the issue, hopefully it'll be resolved soon. Try again in a moment, we still
+        love you!
+    </p>
+
+    <div class="row">
+        <div class="search-box col-sm-6">
+            <form method="get" action="{{ url_for('.do_search') }}">
+                <div class="input-group max-width">
+                    <div class="input-group-addon glyphicon glyphicon-search"></div>
+                    <input type="text" name="q" placeholder="search" class="form-control" value="{{ request.args.get('q', '') }}">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <img class="img-responsive img-centered" src="{{ url_for('static', filename='img/trinity-2.jpg') }}">
+
+{% endblock %}

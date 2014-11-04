@@ -49,33 +49,42 @@ def configure_error_handlers(app):
     @app.errorhandler(500)
     def server_error_page(error):
         '''Something failed somewhere. Log everything that might come in handy for debugging. '''
-        log_msg = textwrap.dedent("""Error occured!
-            Path:                 %s
-            Params:               %s
-            HTTP Method:          %s
-            Client IP Address:    %s
-            User Agent:           %s
-            User Platform:        %s
-            User Browser:         %s
-            User Browser Version: %s
-            HTTP Headers:         %s
-            Exception:            %s
-            """ % (
-                request.path,
-                request.values,
-                request.method,
-                request.remote_addr,
-                request.user_agent.string,
-                request.user_agent.platform,
-                request.user_agent.browser,
-                request.user_agent.version,
-                request.headers,
-                error
-            )
-        )
-        _logger.exception(log_msg)
-
+        log_generic_error(error)
         return render_template('errors/server_error.html'), 500
+
+    @app.errorhandler(503)
+    def backend_error(error):
+        log_generic_error(error)
+        return render_template('errors/backend_error.html'), 503
+
+
+def log_generic_error(error):
+    log_msg = textwrap.dedent("""Error occured!
+        Path:                 %s
+        Params:               %s
+        HTTP Method:          %s
+        Client IP Address:    %s
+        User Agent:           %s
+        User Platform:        %s
+        User Browser:         %s
+        User Browser Version: %s
+        HTTP Headers:         %s
+        Exception:            %s
+        """ % (
+            request.path,
+            request.values,
+            request.method,
+            request.remote_addr,
+            request.user_agent.string,
+            request.user_agent.platform,
+            request.user_agent.browser,
+            request.user_agent.version,
+            request.headers,
+            error
+        )
+    )
+    _logger.exception(log_msg)
+
 
 
 def configure_blueprints(app):

@@ -8,6 +8,8 @@ import requests
 
 class _BingBase(object):
 
+    human_readable = 'Bing'
+
     def kapify_response(self, bing_response):
         response = {
             'results': []
