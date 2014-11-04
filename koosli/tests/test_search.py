@@ -36,6 +36,9 @@ class SearchTest(TestCase):
     def test_search(self):
         self._test_get_request('/search?q=foobar', 'search_results.html')
 
+    def test_empty_search(self):
+        self._test_get_request('/search?q=', 'search_results.html')
+
 
 class SearchFailureTest(unittest.TestCase):
 

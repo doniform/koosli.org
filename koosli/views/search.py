@@ -69,11 +69,10 @@ def do_search():
     else:
         api_response = {
             'results': [],
-            'ads_token': '',
         }
     context = {
         'results': api_response['results'],
         'query': query,
-        'ads_token': api_response['ads_token'],
+        'ads_token': api_response.get('ads_token'),
     }
     return render_template('search_results.html', **context)
