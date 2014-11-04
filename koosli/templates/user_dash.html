@@ -137,47 +137,49 @@
 </div>
 
 
-<script>
-    $("[cause='{{ stats.beneficiary }}']").addClass("active");
-    $("[search='{{ stats.search_provider }}']").addClass("active");
-    $("[ads='{{ stats.ad_network }}']").addClass("active");
-    $("#ads-off").prop("checked", "{{ stats.advertising_off }}" === "True" ? true : false);
+{% endblock %}
 
-    function get_preferences () {
-        return {
-            beneficiary: $(".cause-option.active").attr("cause"),
-            search: $(".search-option.active").attr("search"),
-            ads: $(".ad-option.active").attr("ads"),
-            advertising_off: $("#ads-off").prop("checked")
+{% block extrascripts %}
+    <script>
+        $("[cause='{{ stats.beneficiary }}']").addClass("active");
+        $("[search='{{ stats.search_provider }}']").addClass("active");
+        $("[ads='{{ stats.ad_network }}']").addClass("active");
+        $("#ads-off").prop("checked", "{{ stats.advertising_off }}" === "True" ? true : false);
+
+        function get_preferences () {
+            return {
+                beneficiary: $(".cause-option.active").attr("cause"),
+                search: $(".search-option.active").attr("search"),
+                ads: $(".ad-option.active").attr("ads"),
+                advertising_off: $("#ads-off").prop("checked")
+            }
         }
-    }
 
-    function send_preferences () {
-        $.post("/preference", get_preferences());
-    }
+        function send_preferences () {
+            $.post("/preference", get_preferences());
+        }
 
-    $(".cause-option").click(function () {
-        $(".cause-option").removeClass("active");
-        $(this).addClass("active");
-        send_preferences();
-    });
+        $(".cause-option").click(function () {
+            $(".cause-option").removeClass("active");
+            $(this).addClass("active");
+            send_preferences();
+        });
 
-    $(".search-option").click(function () {
-        $(".search-option").removeClass("active");
-        $(this).addClass("active");
-        send_preferences();
-    });
+        $(".search-option").click(function () {
+            $(".search-option").removeClass("active");
+            $(this).addClass("active");
+            send_preferences();
+        });
 
-    $(".ad-option").click(function () {
-        $(".ad-option").removeClass("active");
-        $(this).addClass("active");
-        send_preferences();
-    });
+        $(".ad-option").click(function () {
+            $(".ad-option").removeClass("active");
+            $(this).addClass("active");
+            send_preferences();
+        });
 
-    $("#ads-off").click(function () {
-        send_preferences();
-    });
+        $("#ads-off").click(function () {
+            send_preferences();
+        });
 
-</script>
-
+    </script>
 {% endblock %}

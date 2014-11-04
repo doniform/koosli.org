@@ -43,7 +43,18 @@
             {% endfor %}
         </div>
     </div>
+            {# "results": [
+                {
+                    "description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
+                    "displayUrl": "en.wikipedia.org/wiki/Bunny",
+                    "title": "Rabbit - Wikipedia, the free encyclopedia",
+                    "url": "http://en.wikipedia.org/wiki/Bunny"
+                }
+            #}
 
+{% endblock %}
+
+{% block extrascripts %}
     <script src="https://s.yimg.com/rv/boss_v2/js/yjs.js"></script>
     <script>
         function fire_ads(token) {
@@ -92,12 +103,4 @@
         var ADS_TOKEN = "{{ ads_token }}";
         fire_ads(ADS_TOKEN);
     </script>
-
-            {# "results": [
-            {
-                "description": "\"Bunny\" redirects here. For other uses, see Bunny (disambiguation). Not to be confused with Rabbet. For other uses, see Rabbit (disambiguation). Rabbit;",
-                "displayUrl": "en.wikipedia.org/wiki/Bunny",
-                "title": "Rabbit - Wikipedia, the free encyclopedia",
-                "url": "http://en.wikipedia.org/wiki/Bunny"
-            } #}
 {% endblock %}
