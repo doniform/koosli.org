@@ -177,17 +177,17 @@ I1
 sg19
 I6
 sg20
-I60
+I65
 sg21
 I0
 sg22
 I3
 sg23
-I6
+I5
 sg24
 I3
 sbssg25
-S"\xddg'~\xa5\xfea\xdaA\xadBC\xf9\xea\x95\x9d"
+S':\xc2\xf5\x18\x86{\xc8\x89\xcb\xeb\x8eU\xa2{\x86\x91'
 p57
 ssS'koosli_search_providers'
 p58
@@ -381,7 +381,7 @@ I1
 sg19
 I2
 sg20
-I30
+I31
 sg21
 I0
 sg22
@@ -391,7 +391,7 @@ I7
 sg24
 I0
 sbssg25
-S'\xf7r\x03\xaf\xc5c"W\xf8\xba)\x12\xfd\x13\xa79'
+S'GU\xe7\x8b"\xa6\xa2\x1e\xa8\xe4\xcd\x8aA\x98\xb07'
 p105
 ssS'koosli_admin'
 p106
@@ -447,9 +447,9 @@ NtRp119
 g18
 I1
 sg19
-I2
+I8
 sg20
-I28
+I42
 sg21
 I0
 sg22
@@ -459,7 +459,7 @@ I1
 sg24
 I1
 sbssg25
-S'\xfeX\x1f\n\x96\xe7\xdb\xd1\x8c\xc0\xf6\xeeN\xf2:\xf6'
+S"a'\x82\x96\xbb\xcd\xb9l\xb2g\x1e\x01\xd7\xa8\xa0\xdc"
 p121
 ssS'koosli_search_providers_bing'
 p122
@@ -483,7 +483,7 @@ I1
 sg19
 I2
 sg20
-I26
+I27
 sg21
 I0
 sg22
@@ -493,7 +493,7 @@ I13
 sg24
 I2
 sbssg25
-S'\x87\x1b\xeer\\B\xb8#\x1c\xc6W\xd5nPxs'
+S'NR\xa5\xdfK\x98S\x04\x85\xc4iin9ln'
 p129
 ssS'koosli_user_models'
 p130
