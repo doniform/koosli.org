@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, redirect
 from logging import getLogger
 import logging.config
 import os
@@ -21,6 +21,7 @@ def create_app(config_file=None):
     configure_blueprints(app)
     configure_extensions(app)
     configure_error_handlers(app)
+    add_static_redirects(app)
 
     return app
 
@@ -33,6 +34,14 @@ def configure_application(app, config_file=None):
     if config_file is not None:
         print 'Loading config from %s' % config_file
         app.config.from_pyfile(config_file)
+
+
+def add_static_redirects(app):
+    """ Add redirects to known-url files like /robots.txt and /favicon.ico to
+    their actual location.
+    """
+    with app.app_context():
+        app.add_url_rule('/robots.txt', 'robots_txt', lambda: redirect(url_for('static', filename='robots.txt')))
 
 
 def configure_error_handlers(app):

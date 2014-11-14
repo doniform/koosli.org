@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
+import unittest
 
 from flask.ext.testing import TestCase as Base
 from flask.ext.login import login_user, logout_user
 from flask import url_for
+
 
 from koosli import create_app, db
 from koosli.user import User, UserStats, ADMIN, USER, ACTIVE
@@ -80,3 +82,20 @@ class TestCase(Base):
         if template:
             self.assertTemplateUsed(name=template)
         return response
+
+
+class NonContextualTestCase(unittest.TestCase):
+
+    def setUp(self):
+        test_config = os.path.join(os.path.dirname(__file__), 'test_config.py')
+        self.app = create_app(test_config)
+        self.client = self.app.test_client()
+        for helper in (200, 201, 301, 302, 400, 401, 403, 404, 500, 503):
+            setattr(self, 'assert%d' % helper, self._assert_status_code(helper))
+
+
+    def _assert_status_code(self, code):
+        """ Helper to create `self.assertXXX` helpers. """
+        def _wrapped(response):
+            self.assertEqual(response.status_code, code)
+        return _wrapped
