@@ -1,11 +1,12 @@
 base:
     '*':
         - koosli
+        - postfix
 
     'koosli.org':
-        - users
         - ssh
         - sudo
+        - users
 
     'vagrant':
         - postgres.server

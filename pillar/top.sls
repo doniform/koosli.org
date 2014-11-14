@@ -1,6 +1,7 @@
 base:
     '*':
         - users
+        - postfix
 
     'koosli.org':
         - secure

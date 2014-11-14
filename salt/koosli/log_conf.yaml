@@ -13,10 +13,20 @@ handlers:
     level: DEBUG
     formatter: simple
     filename: /var/log/koosli/koosli.log
+  admin_mail:
+    level: ERROR
+    class: logging.handlers.SMTPHandler
+    mailhost: localhost
+    fromaddr: no-reply@koosli.org
+    subject: Koosli failure in production
+    toaddrs:
+      - don.ian.cameron@gmail.com
+      - jorgen@eri.im
+      - thusoy@gmail.com
 loggers:
   koosli:
     level: INFO
-    handlers: [file]
+    handlers: [file, admin_mail]
 root:
   level: DEBUG
   handlers: []
