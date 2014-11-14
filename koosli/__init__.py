@@ -68,7 +68,8 @@ def configure_error_handlers(app):
 
 
 def log_generic_error(error):
-    log_msg = textwrap.dedent("""Error occured!
+    log_msg = textwrap.dedent("""\
+        Error occured!
         Path:                 %s
         Params:               %s
         HTTP Method:          %s
@@ -93,7 +94,6 @@ def log_generic_error(error):
         )
     )
     _logger.exception(log_msg)
-
 
 
 def configure_blueprints(app):
