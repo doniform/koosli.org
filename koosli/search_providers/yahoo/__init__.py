@@ -58,6 +58,7 @@ class Yahoo(_YahooBase):
             'count': 10,
             'ads.Partner': 'domaindev_syn_boss157_ss_search',
             'ads.Type': 'ddc_koosli_org',
+            'ads.count': 1,
         }
         response = requests.get(self.api_root, params=params, auth=oauth)
         response.raise_for_status()
