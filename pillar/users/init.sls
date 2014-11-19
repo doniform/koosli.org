@@ -12,6 +12,15 @@ users:
         groups:
             - admin
 
+    jorgeer:
+        fullname: Jorgen Foss Eri
+        ssh_auth:
+            #xishan
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYvAEl5JML6/v6fDFDIBcSWjmG+5A32wCvYiiVBoblC8YAl77rdHyUbfR9i8DLsy4GRIRJuxBGpR7QUUMwkqwlRagWqe19QDEFidbfyPej3mKvRXrcEZlV0EscbUOC/eTH8spKBVEJtpc0X6M6ZnZU3LB1oHXewF7/68PNykUbnqlGSfPBenGoGeHAWFRAjNokQa14BHpVUCeMOBhZ51wXIIZOGvG8XEZ9pVHuE99PxPv8alCd5nym+H9K9/MlNm3va3gCPAb7y5HsNVKthKnjtg7HxTQNGDLzZwB3wfFYKOpfk5TlHhiJPyALRPs7LysTbWnnme1RcNnHYxqmpZhH jfemail3@gmail.com
+        password_pillar: JORGEN_PASSWORD
+        groups:
+            - admin
+
     travis-ci:
         fullname: Travis CI (auto deployments)
         ssh_auth:
