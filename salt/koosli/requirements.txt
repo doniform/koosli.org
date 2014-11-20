@@ -7,3 +7,5 @@ Flask-Migrate==1.2.0
 Flask-wtf
 arrow
 pyyaml
+python-geoip==1.2
+python-geoip-geolite2==2014.0207
