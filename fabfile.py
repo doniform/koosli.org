@@ -54,6 +54,9 @@ def deploy():
     sudo('tar xf /tmp/static-files.tar.gz -C /srv/koosli.org/static')
     run('rm /tmp/static-files.tar.gz')
 
+    # Migrate database if changes have been made to schemas
+    migrate()
+
     # Restart the service
     sudo('service uwsgi restart')
 
@@ -76,3 +79,14 @@ def provision():
     sudo('tar xf /tmp/salt_and_pillar.tar.gz -C /srv')
     sudo('salt-call state.highstate --force-color --local')
     sudo('rm /tmp/salt_and_pillar.tar.gz')
+
+
+
+def migrate():
+    """ Apply migration command using Flask-migrate/alembic
+
+    Create new migrations using
+        python manage.py db migrate -m 'what has changed'
+    """
+    with shell_env(KOOSLI_CONFIG_FILE='/srv/koosli.org/prod_settings.py'):
+        run('/srv/koosli.org/venv/bin/manage.py db upgrade')

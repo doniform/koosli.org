@@ -31,6 +31,9 @@ def configure_application(app, config_file=None):
     core_config = os.path.abspath(os.path.join(os.path.dirname(__file__), 'core_config.py'))
     app.config.from_pyfile(core_config)
 
+    if os.environ.get("KOOSLI_CONFIG_FILE"):
+        app.config.from_envvar("KOOSLI_CONFIG_FILE")
+
     if config_file is not None:
         print 'Loading config from %s' % config_file
         app.config.from_pyfile(config_file)
@@ -117,11 +120,8 @@ def configure_extensions(app):
     # Database management
     #=========================================
 
-    db.init_app(app)
 
-    if app.debug:
-        with app.app_context():
-            db.create_all()
+    db.init_app(app)
 
     #=========================================
     # flask-login

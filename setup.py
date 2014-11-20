@@ -17,5 +17,10 @@ setup(
             path.join('templates', '*', '*.html'),
         ],
     },
+    entry_points={
+        'console_scripts': [
+            'manage.py = koosli.manage:main'
+        ]
+    },
     zip_safe=False
 )
