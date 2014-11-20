@@ -89,4 +89,4 @@ def migrate():
         python manage.py db migrate -m 'what has changed'
     """
     with shell_env(KOOSLI_CONFIG_FILE='/srv/koosli.org/prod_settings.py'):
-        run('/srv/koosli.org/venv/bin/manage.py db upgrade')
+        sudo('/srv/koosli.org/venv/bin/manage.py db upgrade')
