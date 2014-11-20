@@ -36,15 +36,17 @@ def deploy():
 
     Assumes the app has already been built (eg `grunt build`).
     """
-    # package the static files
+    # package the static files and migrations
     if not os.path.exists('dist'):
         os.mkdir('dist')
     with lcd(os.path.join('koosli', 'static')):
         local('tar czf ../../dist/static-files.tar.gz *')
+    local('tar czf dist/migrations.tar.gz migrations')
 
     # Push the build artifacts to the server
     put('dist/koosli-1.0.0.tar.gz', '/tmp')
     put('dist/static-files.tar.gz', '/tmp')
+    put('dist/migrations.tar.gz', '/tmp')
 
     # Install the new code
     sudo('/srv/koosli.org/venv/bin/pip install -U /tmp/koosli-1.0.0.tar.gz')
@@ -81,12 +83,17 @@ def provision():
     sudo('rm /tmp/salt_and_pillar.tar.gz')
 
 
-
 def migrate():
     """ Apply migration command using Flask-migrate/alembic
 
     Create new migrations using
         python manage.py db migrate -m 'what has changed'
     """
+    # Unpack the migration files
+    run('tar xf /tmp/migrations.tar.gz -C /tmp')
+
     with shell_env(KOOSLI_CONFIG_FILE='/srv/koosli.org/prod_settings.py'):
-        sudo('/srv/koosli.org/venv/bin/manage.py db upgrade')
+        sudo('/srv/koosli.org/venv/bin/manage.py db upgrade -d /tmp/migrations')
+
+    # Cleanup
+    run('rm -rf /tmp/migrations')
