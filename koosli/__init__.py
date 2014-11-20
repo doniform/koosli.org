@@ -102,14 +102,16 @@ def log_generic_error(error):
 def configure_blueprints(app):
     '''Register all application blueprints'''
 
-    from .views import search
+    from .views import search as site
     from .views import settings
     from .user import user
     from .admin import admin
+    from .search import search
 
+    app.register_blueprint(site.mod)
     app.register_blueprint(user)
     app.register_blueprint(admin)
-    app.register_blueprint(search.mod)
+    app.register_blueprint(search)
     app.register_blueprint(settings.mod)
 
 
@@ -120,6 +122,8 @@ def configure_extensions(app):
     # Database management
     #=========================================
 
+    from .search import models as _
+    from .user import models as _
 
     db.init_app(app)
 

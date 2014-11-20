@@ -92,6 +92,8 @@ class NonContextualTestCase(unittest.TestCase):
         self.client = self.app.test_client()
         for helper in (200, 201, 301, 302, 400, 401, 403, 404, 500, 503):
             setattr(self, 'assert%d' % helper, self._assert_status_code(helper))
+        with self.app.app_context():
+            db.create_all()
 
 
     def _assert_status_code(self, code):

@@ -1,6 +1,8 @@
 from . import TestCase, NonContextualTestCase
 from .. import create_app
-from ..views.search import get_search_providers
+
+from koosli.search.views import get_search_providers
+from koosli.search.models import UserQuery
 
 from flask import url_for
 from mock import patch
@@ -19,7 +21,7 @@ class FailureProvider(object):
 class SearchTest(TestCase):
 
     def test_main_page(self):
-        self._test_get_request(url_for('search.search_main'), 'index.html')
+        self._test_get_request('/beta', 'index.html')
 
     def test_about(self):
         self._test_get_request('/about', 'about.html')
@@ -39,6 +41,11 @@ class SearchTest(TestCase):
     def test_empty_search(self):
         self._test_get_request('/search?q=', 'search_results.html')
 
+    def test_querymodel_added(self):
+        self.assertEqual(UserQuery.query.count(), 0)
+        response = self.client.get('/search?q=foobar')
+        self.assertEqual(UserQuery.query.count(), 1)
+
 
 class SearchFailureTest(NonContextualTestCase):
 
@@ -47,15 +54,15 @@ class SearchFailureTest(NonContextualTestCase):
             real_providers = get_search_providers()
         first_provider_failing = [FailureProvider()] + real_providers
         self.app.testing = True
-        with patch('koosli.views.search.get_search_providers', lambda: first_provider_failing):
+        with patch('koosli.search.views.get_search_providers', lambda: first_provider_failing):
             response = self.client.get('/search?q=kittens')
             self.assert200(response)
             self.assertTrue('FailureProvider backend failed' in response.data)
 
 
-    def test_all_rpviders_failing(self):
+    def test_all_providers_failing(self):
         only_failing_providers = [FailureProvider()]
-        with patch('koosli.views.search.get_search_providers', lambda: only_failing_providers):
+        with patch('koosli.search.views.get_search_providers', lambda: only_failing_providers):
             response = self.client.get('/search?q=kittens')
             self.assert503(response)
             self.assertTrue('All search providers failed' in response.data)
