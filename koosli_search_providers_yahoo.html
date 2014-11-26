@@ -115,19 +115,20 @@
 <p id='n50' class='pln'><a href='#n50'>50</a></p>
 <p id='n51' class='pln'><a href='#n51'>51</a></p>
 <p id='n52' class='pln'><a href='#n52'>52</a></p>
-<p id='n53' class='stm mis'><a href='#n53'>53</a></p>
+<p id='n53' class='pln'><a href='#n53'>53</a></p>
 <p id='n54' class='pln'><a href='#n54'>54</a></p>
 <p id='n55' class='pln'><a href='#n55'>55</a></p>
-<p id='n56' class='pln'><a href='#n56'>56</a></p>
+<p id='n56' class='stm mis'><a href='#n56'>56</a></p>
 <p id='n57' class='pln'><a href='#n57'>57</a></p>
 <p id='n58' class='pln'><a href='#n58'>58</a></p>
 <p id='n59' class='pln'><a href='#n59'>59</a></p>
 <p id='n60' class='pln'><a href='#n60'>60</a></p>
 <p id='n61' class='pln'><a href='#n61'>61</a></p>
 <p id='n62' class='pln'><a href='#n62'>62</a></p>
-<p id='n63' class='stm mis'><a href='#n63'>63</a></p>
+<p id='n63' class='pln'><a href='#n63'>63</a></p>
 <p id='n64' class='stm mis'><a href='#n64'>64</a></p>
 <p id='n65' class='stm mis'><a href='#n65'>65</a></p>
+<p id='n66' class='stm mis'><a href='#n66'>66</a></p>
                 
             </td>
             <td class='text' valign='top'>
@@ -137,7 +138,7 @@
 <p id='t4' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t5' class='stm run hide_run'><span class='key'>from</span> <span class='nam'>flask</span> <span class='key'>import</span> <span class='nam'>current_app</span><span class='op'>,</span> <span class='nam'>Markup</span><span class='strut'>&nbsp;</span></p>
 <p id='t6' class='stm run hide_run'><span class='key'>from</span> <span class='nam'>requests_oauthlib</span> <span class='key'>import</span> <span class='nam'>OAuth1</span><span class='strut'>&nbsp;</span></p>
-<p id='t7' class='stm run hide_run'><span class='key'>from</span> <span class='nam'>urllib</span> <span class='key'>import</span> <span class='nam'>quote_plus</span><span class='strut'>&nbsp;</span></p>
+<p id='t7' class='stm run hide_run'><span class='key'>from</span> <span class='nam'>urllib</span> <span class='key'>import</span> <span class='nam'>urlencode</span><span class='strut'>&nbsp;</span></p>
 <p id='t8' class='stm run hide_run'><span class='key'>import</span> <span class='nam'>requests</span><span class='strut'>&nbsp;</span></p>
 <p id='t9' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t10' class='pln'><span class='strut'>&nbsp;</span></p>
@@ -183,19 +184,20 @@
 <p id='t50' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>client_key</span><span class='op'>=</span><span class='nam'>client_key</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
 <p id='t51' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>client_secret</span><span class='op'>=</span><span class='nam'>client_secret</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
 <p id='t52' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t53' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>params</span> <span class='op'>=</span> <span class='op'>{</span><span class='strut'>&nbsp;</span></p>
-<p id='t54' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;format&#39;</span><span class='op'>:</span> <span class='str'>&#39;json&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t55' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># For some reason BOSS auth fails for multi-word searches if we don&#39;t escape the values</span><span class='strut'>&nbsp;</span></p>
-<p id='t56' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># ourselves due to invalid signatures. If you want to dig to figure out why, go ahead.</span><span class='strut'>&nbsp;</span></p>
-<p id='t57' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;q&#39;</span><span class='op'>:</span> <span class='nam'>quote_plus</span><span class='op'>(</span><span class='nam'>query</span><span class='op'>)</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t58' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;count&#39;</span><span class='op'>:</span> <span class='num'>10</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t59' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.Partner&#39;</span><span class='op'>:</span> <span class='str'>&#39;domaindev_syn_boss157_ss_search&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t60' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.Type&#39;</span><span class='op'>:</span> <span class='str'>&#39;ddc_koosli_org&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t61' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.count&#39;</span><span class='op'>:</span> <span class='num'>1</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
-<p id='t62' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='op'>}</span><span class='strut'>&nbsp;</span></p>
-<p id='t63' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>response</span> <span class='op'>=</span> <span class='nam'>requests</span><span class='op'>.</span><span class='nam'>get</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>api_root</span><span class='op'>,</span> <span class='nam'>params</span><span class='op'>=</span><span class='nam'>params</span><span class='op'>,</span> <span class='nam'>auth</span><span class='op'>=</span><span class='nam'>oauth</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t64' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>response</span><span class='op'>.</span><span class='nam'>raise_for_status</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t65' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>kapify_response</span><span class='op'>(</span><span class='nam'>response</span><span class='op'>.</span><span class='nam'>json</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t53' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># Default urlescaping uses plus signs (+) instead of %20 for spaces, which causes auth to</span><span class='strut'>&nbsp;</span></p>
+<p id='t54' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># blow up for some reason. Thus we escape the arguments ourselves as pass the final query</span><span class='strut'>&nbsp;</span></p>
+<p id='t55' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># string to requests</span><span class='strut'>&nbsp;</span></p>
+<p id='t56' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>params</span> <span class='op'>=</span> <span class='nam'>urlencode</span><span class='op'>(</span><span class='op'>{</span><span class='strut'>&nbsp;</span></p>
+<p id='t57' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;format&#39;</span><span class='op'>:</span> <span class='str'>&#39;json&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t58' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;q&#39;</span><span class='op'>:</span> <span class='nam'>query</span><span class='op'>.</span><span class='nam'>encode</span><span class='op'>(</span><span class='str'>&#39;utf-8&#39;</span><span class='op'>)</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t59' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;count&#39;</span><span class='op'>:</span> <span class='num'>10</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t60' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.Partner&#39;</span><span class='op'>:</span> <span class='str'>&#39;domaindev_syn_boss157_ss_search&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t61' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.Type&#39;</span><span class='op'>:</span> <span class='str'>&#39;ddc_koosli_org&#39;</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t62' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;ads.count&#39;</span><span class='op'>:</span> <span class='num'>1</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
+<p id='t63' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='op'>}</span><span class='op'>)</span><span class='op'>.</span><span class='nam'>replace</span><span class='op'>(</span><span class='str'>&#39;+&#39;</span><span class='op'>,</span> <span class='str'>&#39;%20&#39;</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t64' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>response</span> <span class='op'>=</span> <span class='nam'>requests</span><span class='op'>.</span><span class='nam'>get</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>.</span><span class='nam'>api_root</span><span class='op'>,</span> <span class='nam'>params</span><span class='op'>=</span><span class='nam'>params</span><span class='op'>,</span> <span class='nam'>auth</span><span class='op'>=</span><span class='nam'>oauth</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t65' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>response</span><span class='op'>.</span><span class='nam'>raise_for_status</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t66' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>kapify_response</span><span class='op'>(</span><span class='nam'>response</span><span class='op'>.</span><span class='nam'>json</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
                 
             </td>
         </tr>
