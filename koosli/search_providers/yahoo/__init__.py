@@ -4,7 +4,7 @@ import os
 
 from flask import current_app, Markup
 from requests_oauthlib import OAuth1
-from urllib import quote_plus
+from urllib import urlencode
 import requests
 
 
@@ -50,16 +50,17 @@ class Yahoo(_YahooBase):
             client_key=client_key,
             client_secret=client_secret,
         )
-        params = {
+        # Default urlescaping uses plus signs (+) instead of %20 for spaces, which causes auth to
+        # blow up for some reason. Thus we escape the arguments ourselves as pass the final query
+        # string to requests
+        params = urlencode({
             'format': 'json',
-            # For some reason BOSS auth fails for multi-word searches if we don't escape the values
-            # ourselves due to invalid signatures. If you want to dig to figure out why, go ahead.
-            'q': quote_plus(query),
+            'q': query.encode('utf-8'),
             'count': 10,
             'ads.Partner': 'domaindev_syn_boss157_ss_search',
             'ads.Type': 'ddc_koosli_org',
             'ads.count': 1,
-        }
+        }).replace('+', '%20')
         response = requests.get(self.api_root, params=params, auth=oauth)
         response.raise_for_status()
         return self.kapify_response(response.json())
