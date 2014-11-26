@@ -1,5 +1,5 @@
 # Include the base requirements
--r requirements.txt
+-r /srv/salt/koosli/requirements.txt
 
 # Stuff needed only in prod environments
 psycopg2
