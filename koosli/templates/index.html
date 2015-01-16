@@ -4,16 +4,13 @@
 
 <div class="banner whitetron">
     <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
-    <h3 class="max-width text-center">People, Privacy and Choice</h3>
+    <h3 class="max-width text-center">Search for a better world!</h3>
     <form method="get" action="{{ url_for('search.do_search') }}" class="form-inline" style="margin: 30px 30px 10px 30px">
         <div class="input-group max-width">
             <div class="input-group-addon glyphicon glyphicon-search"></div>
             <input type="text" name="q" placeholder="search" class="form-control">
         </div>
     </form>
-    <p class="max-width text-center">
-        <b>All</b> advertising revenue goes to charity &mdash; you choose which!
-    </p>
 </div>
 
 {% endblock %}
