@@ -1,2 +1,1 @@
-postgres:
-    db_url: localhost
+postgres.verify_ssl: False

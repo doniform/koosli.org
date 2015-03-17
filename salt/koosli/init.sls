@@ -132,3 +132,9 @@ koosli-nginx-www-key:
       - file: nginx-private-dir
     - watch_in:
       - service: nginx
+
+
+rds-root-certs:
+    file.managed:
+        - name: {{ home }}/rds-root.crt
+        - source: salt://koosli/rds-root.crt
