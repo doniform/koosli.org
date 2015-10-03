@@ -12,7 +12,8 @@ Install virtualenv, then:
     $ virtualenv venv
     $ . venv/bin/activate
     $ pip install -r dev-requirements.txt
-    $ python run_devserver.py
+    $ ./manage.py db upgrade
+    $ ./manage.py runserver
 
 To run the tests:
 
