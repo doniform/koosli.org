@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     salt.minion_config = "salt/vagrant-minion"
     salt.run_highstate = true
     salt.verbose = true
-
+    salt.install_type = "-P git"
+    salt.install_args = "v2015.5.5"
   end
 end
