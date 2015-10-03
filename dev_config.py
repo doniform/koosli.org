@@ -28,3 +28,5 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + PROJECT_ROOT + '/kooslidb.db'
 YAHOO_CONSUMER_SECRET = '' # fill in to use yahoo boss search
 
 BING_API_KEY = '' # Fill in to use live bing search
+
+LOG_CONF_PATH = os.path.join(PROJECT_ROOT, 'dev_log_config.yaml')
