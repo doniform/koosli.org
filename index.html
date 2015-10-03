@@ -1,81 +1,90 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
-    <link rel='stylesheet' href='style.css' type='text/css'>
+    <link rel="stylesheet" href="style.css" type="text/css">
     
-    <script type='text/javascript' src='jquery.min.js'></script>
-    <script type='text/javascript' src='jquery.tablesorter.min.js'></script>
-    <script type='text/javascript' src='jquery.hotkeys.js'></script>
-    <script type='text/javascript' src='coverage_html.js'></script>
-    <script type='text/javascript' charset='utf-8'>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.debounce.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
         jQuery(document).ready(coverage.index_ready);
     </script>
 </head>
-<body id='indexfile'>
+<body class="indexfile">
 
-<div id='header'>
-    <div class='content'>
+<div id="header">
+    <div class="content">
         <h1>Coverage report:
-            <span class='pc_cov'>85%</span>
+            <span class="pc_cov">85%</span>
         </h1>
-        <img id='keyboard_icon' src='keybd_closed.png'>
+
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
     </div>
 </div>
 
-<div class='help_panel'>
-    <img id='panel_icon' src='keybd_open.png'>
-    <p class='legend'>Hot-keys on this page</p>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
     <div>
-    <p class='keyhelp'>
-        <span class='key'>n</span>
-        <span class='key'>s</span>
-        <span class='key'>m</span>
-        <span class='key'>x</span>
+    <p class="keyhelp">
+        <span class="key">n</span>
+        <span class="key">s</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
         
-        <span class='key'>b</span>
-        <span class='key'>p</span>
+        <span class="key">b</span>
+        <span class="key">p</span>
         
-        <span class='key'>c</span> &nbsp; change column sorting
+        <span class="key">c</span> &nbsp; change column sorting
     </p>
     </div>
 </div>
 
-<div id='index'>
-    <table class='index'>
+<div id="index">
+    <table class="index">
         <thead>
             
-            <tr class='tablehead' title='Click to sort'>
-                <th class='name left headerSortDown shortkey_n'>Module</th>
-                <th class='shortkey_s'>statements</th>
-                <th class='shortkey_m'>missing</th>
-                <th class='shortkey_x'>excluded</th>
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left headerSortDown shortkey_n">Module</th>
+                <th class="shortkey_s">statements</th>
+                <th class="shortkey_m">missing</th>
+                <th class="shortkey_x">excluded</th>
                 
-                <th class='shortkey_b'>branches</th>
-                <th class='shortkey_p'>partial</th>
+                <th class="shortkey_b">branches</th>
+                <th class="shortkey_p">partial</th>
                 
-                <th class='right shortkey_c'>coverage</th>
+                <th class="right shortkey_c">coverage</th>
             </tr>
         </thead>
         
         <tfoot>
-            <tr class='total'>
-                <td class='name left'>Total</td>
-                <td>400</td>
-                <td>54</td>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>402</td>
+                <td>56</td>
                 <td>0</td>
                 
                 <td>48</td>
                 <td>5</td>
                 
-                <td class='right'>85%</td>
+                <td class="right" data-ratio="381 450">85%</td>
             </tr>
         </tfoot>
         <tbody>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli.html'>koosli</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_py.html">koosli.py</a></td>
                 <td>72</td>
                 <td>6</td>
                 <td>0</td>
@@ -83,11 +92,11 @@
                 <td>8</td>
                 <td>3</td>
                 
-                <td class='right'>89%</td>
+                <td class="right" data-ratio="71 80">89%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_admin.html'>koosli.admin</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_admin_py.html">koosli/admin.py</a></td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
@@ -95,11 +104,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="1 1">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_admin_views.html'>koosli.admin.views</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_admin_views_py.html">koosli/admin/views.py</a></td>
                 <td>12</td>
                 <td>0</td>
                 <td>0</td>
@@ -107,11 +116,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="12 12">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_decorators.html'>koosli.decorators</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_decorators_py.html">koosli/decorators.py</a></td>
                 <td>12</td>
                 <td>0</td>
                 <td>0</td>
@@ -119,11 +128,11 @@
                 <td>4</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="16 16">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_extensions.html'>koosli.extensions</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_extensions_py.html">koosli/extensions.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -131,11 +140,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="4 4">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search.html'>koosli.search</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_py.html">koosli/search.py</a></td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
@@ -143,11 +152,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="1 1">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search_models.html'>koosli.search.models</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_models_py.html">koosli/search/models.py</a></td>
                 <td>10</td>
                 <td>1</td>
                 <td>0</td>
@@ -155,11 +164,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>90%</td>
+                <td class="right" data-ratio="9 10">90%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search_views.html'>koosli.search.views</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_views_py.html">koosli/search/views.py</a></td>
                 <td>49</td>
                 <td>9</td>
                 <td>0</td>
@@ -167,11 +176,11 @@
                 <td>12</td>
                 <td>1</td>
                 
-                <td class='right'>80%</td>
+                <td class="right" data-ratio="49 61">80%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search_providers.html'>koosli.search_providers</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_providers_py.html">koosli/search_providers.py</a></td>
                 <td>4</td>
                 <td>2</td>
                 <td>0</td>
@@ -179,11 +188,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>50%</td>
+                <td class="right" data-ratio="2 4">50%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search_providers_bing.html'>koosli.search_providers.bing</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_providers_bing_py.html">koosli/search_providers/bing.py</a></td>
                 <td>27</td>
                 <td>13</td>
                 <td>0</td>
@@ -191,23 +200,23 @@
                 <td>2</td>
                 <td>0</td>
                 
-                <td class='right'>48%</td>
+                <td class="right" data-ratio="14 29">48%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_search_providers_yahoo.html'>koosli.search_providers.yahoo</a></td>
-                <td>31</td>
-                <td>7</td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_search_providers_yahoo_py.html">koosli/search_providers/yahoo.py</a></td>
+                <td>33</td>
+                <td>9</td>
                 <td>0</td>
                 
                 <td>2</td>
                 <td>0</td>
                 
-                <td class='right'>79%</td>
+                <td class="right" data-ratio="26 35">74%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_user.html'>koosli.user</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_user_py.html">koosli/user.py</a></td>
                 <td>2</td>
                 <td>0</td>
                 <td>0</td>
@@ -215,11 +224,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="2 2">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_user_forms.html'>koosli.user.forms</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_user_forms_py.html">koosli/user/forms.py</a></td>
                 <td>15</td>
                 <td>0</td>
                 <td>0</td>
@@ -227,11 +236,11 @@
                 <td>2</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="17 17">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_user_models.html'>koosli.user.models</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_user_models_py.html">koosli/user/models.py</a></td>
                 <td>62</td>
                 <td>0</td>
                 <td>0</td>
@@ -239,11 +248,11 @@
                 <td>2</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="64 64">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_user_views.html'>koosli.user.views</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_user_views_py.html">koosli/user/views.py</a></td>
                 <td>66</td>
                 <td>15</td>
                 <td>0</td>
@@ -251,11 +260,11 @@
                 <td>16</td>
                 <td>1</td>
                 
-                <td class='right'>76%</td>
+                <td class="right" data-ratio="62 82">76%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_utils.html'>koosli.utils</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_utils_py.html">koosli/utils.py</a></td>
                 <td>11</td>
                 <td>1</td>
                 <td>0</td>
@@ -263,11 +272,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>91%</td>
+                <td class="right" data-ratio="10 11">91%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_views.html'>koosli.views</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_views_py.html">koosli/views.py</a></td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
@@ -275,11 +284,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="1 1">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_views_search.html'>koosli.views.search</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_views_search_py.html">koosli/views/search.py</a></td>
                 <td>16</td>
                 <td>0</td>
                 <td>0</td>
@@ -287,11 +296,11 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="16 16">100%</td>
             </tr>
             
-            <tr class='file'>
-                <td class='name left'><a href='koosli_views_settings.html'>koosli.views.settings</a></td>
+            <tr class="file">
+                <td class="name left"><a href="koosli_views_settings_py.html">koosli/views/settings.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -299,17 +308,22 @@
                 <td>0</td>
                 <td>0</td>
                 
-                <td class='right'>100%</td>
+                <td class="right" data-ratio="4 4">100%</td>
             </tr>
             
         </tbody>
     </table>
+
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
 </div>
 
-<div id='footer'>
-    <div class='content'>
+<div id="footer">
+    <div class="content">
         <p>
-            <a class='nav' href='http://nedbatchelder.com/code/coverage'>coverage.py v3.7.1</a>
+            <a class="nav" href="https://coverage.readthedocs.org">coverage.py v4.0</a>,
+            created at 2015-10-03 15:39
         </p>
     </div>
 </div>
