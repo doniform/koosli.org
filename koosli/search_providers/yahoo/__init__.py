@@ -2,7 +2,7 @@ import json
 import random
 import os
 
-from flask import current_app, Markup
+from flask import current_app, Markup, request
 from requests_oauthlib import OAuth1
 from urllib import urlencode
 import requests
@@ -41,7 +41,7 @@ class YahooMock(_YahooBase):
 
 class Yahoo(_YahooBase):
 
-    api_root = 'https://yboss.yahooapis.com/ysearch/web,ads'
+    api_root = 'https://yboss.yahooapis.com/ysearch/v4/web,ads'
 
     def search(self, query):
         client_key = current_app.config['YAHOO_CONSUMER_KEY']
@@ -50,6 +50,10 @@ class Yahoo(_YahooBase):
             client_key=client_key,
             client_secret=client_secret,
         )
+
+        user_ip = request.access_route[0]
+        user_ua = request.headers.get('user-agent', 'none')
+
         # Default urlescaping uses plus signs (+) instead of %20 for spaces, which causes auth to
         # blow up for some reason. Thus we escape the arguments ourselves as pass the final query
         # string to requests
@@ -57,9 +61,12 @@ class Yahoo(_YahooBase):
             'format': 'json',
             'q': query.encode('utf-8'),
             'count': 10,
-            'ads.Partner': 'domaindev_syn_boss157_ss_search',
-            'ads.Type': 'ddc_koosli_org',
+            'ads.partner': 'domaindev_syn_boss157_ss_search',
+            'ads.type': 'ddc_koosli_org',
             'ads.count': 1,
+            'ads.ip': user_ip,
+            'ads.ua': user_ua,
+            'ads.url': '',
         }).replace('+', '%20')
         response = requests.get(self.api_root, params=params, auth=oauth)
         response.raise_for_status()
