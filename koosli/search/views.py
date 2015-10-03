@@ -64,7 +64,7 @@ def do_search():
     context = {
         'results': api_response['results'],
         'query': query,
-        'ads_token': api_response.get('ads_token'),
+        'ads': api_response.get('ads', []),
     }
 
     country = ''

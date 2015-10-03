@@ -13,12 +13,12 @@ class _YahooBase(object):
     human_readable = 'Yahoo!'
 
     def kapify_response(self, yahoo_response):
-        ads_token = yahoo_response['bossresponse'].get('ads', {}).get('dmtoken')
         response = {
-            'ads_token': Markup(ads_token),
             'results': [],
+            'ads': [],
         }
-        for result in yahoo_response.get('bossresponse', {}).get('web', {}).get('results', []):
+        bossresponse = yahoo_response.get('bossresponse', {})
+        for result in bossresponse.get('web', {}).get('results', []):
             # Wrapping the data in Markup() ensures they're not escaped in the template rendering.
             # We trust results from Yahoo.
             response['results'].append({
@@ -26,6 +26,13 @@ class _YahooBase(object):
                 'displayUrl': Markup(result['dispurl']),
                 'description': Markup(result['abstract']),
                 'url': result['url'],
+            })
+        for ad in bossresponse.get('ads', {}).get('resultset', {}).get('listing', []):
+            response['ads'].append({
+                'title': Markup(ad['title']),
+                'click_url': ad['clickurl'],
+                'description': Markup(ad['description']),
+                'display_url': Markup(ad['siteHost']),
             })
         return response
 

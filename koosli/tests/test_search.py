@@ -47,6 +47,19 @@ class SearchTest(TestCase):
         self.assertEqual(UserQuery.query.count(), 1)
 
 
+class YahooBossTest(TestCase):
+
+    def test_parses_response_correctly(self):
+        provider = self.app.config['SEARCH_PROVIDERS']['yahoo']()
+        kapified_response = provider.search('dummy')
+        self.assertTrue('ads' in kapified_response)
+        self.assertEqual(len(kapified_response['ads']), 2)
+        first_ad = kapified_response['ads'][0]
+        self.assertEqual(first_ad['click_url'], 'http://r.search.yahoo.com/cbclk/dummytracker')
+        self.assertEqual(first_ad['title'], '<strong>Alesund</strong> Norway')
+        self.assertEqual(first_ad['display_url'], 'wow.com/Alesund<strong> </strong>Norway')
+
+
 class SearchFailureTest(NonContextualTestCase):
 
     def test_single_search_provider_failure(self):
