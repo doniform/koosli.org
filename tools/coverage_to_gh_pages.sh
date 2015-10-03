@@ -7,7 +7,7 @@ set -o errexit #abort if any command fails
 # configuration
 deploy_directory=cover
 deploy_branch=gh-pages
-repo=https://$GITHUB_TOKEN@github.com/Koosli/koosli.org.git
+repo=https://$GITHUB_TOKEN@github.com/doniancameron/koosli.org.git
 
 # git setup
 git remote set-url origin $REPO.git
