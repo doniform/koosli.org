@@ -22,7 +22,7 @@ handlers:
     toaddrs:
       - don.ian.cameron@gmail.com
       - jorgen@eri.im
-      - thusoy@gmail.com
+      - apps-koosliadmin@thusoy.com
 loggers:
   koosli:
     level: INFO
