@@ -6,12 +6,12 @@
     <div class="banner whitetron">
         <img class="img-responsive" src="{{ url_for('static', filename='img/banner.png') }}">
         <h4 class="max-width text-center">
-            Bringing you a login experience<br>
-            To protect your control for privacy<br>
-            To enable your freedom of identity
+            Bringing you a login experience:<br>
+            To protect your control for privacy,<br>
+            To enable your freedom of identity.
         </h4>
 
-        <div class="row" style="margin-top:50px">
+        <div class="row" style="margin-top:15px">
             {% if message %}
             {% endif %}
             {% with messages = get_flashed_messages(with_categories=true) %}
