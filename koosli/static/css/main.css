@@ -4,7 +4,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
-    min-height:600px;
+    min-height:400px;
     font-family: sans-serif;
 }
 body {
@@ -51,7 +51,7 @@ body {
     top:15%;
 }
 .banner img {
-    margin-top: 10%;
+    margin-top: 25%;
     margin: 15px auto;
 }
 .row {
