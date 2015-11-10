@@ -14,7 +14,7 @@ body {
     background-image: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Digisapiens.png/1024px-Digisapiens.png);
     background-repeat:no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
 }
 #wrapper {
     min-height:100%;
