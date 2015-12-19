@@ -21,6 +21,10 @@ To run the tests:
 
 Keep [test coverage](http://koosli.github.io/koosli.org/) up.
 
+Add a user to the web server by running `pcrypt -r 50000` to get your password hash,
+and encrypt it using `tools/secure_data.py`. Add the rest of your details to
+`pillar/users/init.sls` and Travis will create your user when you push your changes.
+
 
 Vagrant
 -------
